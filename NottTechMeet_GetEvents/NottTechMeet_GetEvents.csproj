@@ -15,4 +15,8 @@
     <DotNetCliToolReference Include="Amazon.Lambda.Tools" Version="2.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\NottTechMeet_IO\NottTechMeet_IO.csproj" />
+  </ItemGroup>
+
 </Project>
