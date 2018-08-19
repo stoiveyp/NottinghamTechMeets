@@ -19,5 +19,10 @@ namespace NottTechMeet_IO
 
         [JsonProperty("events")]
         public List<Event> Events { get; set; }
+
+        [JsonProperty("last_updated")]
+        public DateTime? LastUpdated { get; set; }
+
+        [JsonIgnore] public string EnvSafeGroupName => GroupName.Replace("-", "_");
     }
 }

@@ -26,7 +26,7 @@ namespace NottTechMeet_KillSwitch
 
             try
             {
-                var output = System.Environment.GetEnvironmentVariable(input.GroupName.Replace("-","_"));
+                var output = System.Environment.GetEnvironmentVariable(input.EnvSafeGroupName);
                 input.Active = !string.IsNullOrWhiteSpace(output);
             }
             catch (Exception ex)
