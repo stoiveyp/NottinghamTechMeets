@@ -25,6 +25,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NottTechMeet_IO", "NottTech
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NottTechMeet_Skill", "NottTechMeet_Skill\NottTechMeet_Skill.csproj", "{5032C8E9-A77C-4EC6-A3AE-D068A384783F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NottTechMeet_Skill.Tests", "NottTechMeet_Skill.Tests\NottTechMeet_Skill.Tests.csproj", "{846A1F99-CF31-4B5D-AE09-A278B0EF2799}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,10 @@ Global
 		{5032C8E9-A77C-4EC6-A3AE-D068A384783F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5032C8E9-A77C-4EC6-A3AE-D068A384783F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5032C8E9-A77C-4EC6-A3AE-D068A384783F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{846A1F99-CF31-4B5D-AE09-A278B0EF2799}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{846A1F99-CF31-4B5D-AE09-A278B0EF2799}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{846A1F99-CF31-4B5D-AE09-A278B0EF2799}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{846A1F99-CF31-4B5D-AE09-A278B0EF2799}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,6 +86,7 @@ Global
 		{03983A49-9F5F-46C3-A738-5D85AD58A5A5} = {6A7C080F-C167-4736-8ECB-063515FDA5EF}
 		{A36FFB9A-5AAB-4D4A-B0E3-852E51A1211A} = {6A7C080F-C167-4736-8ECB-063515FDA5EF}
 		{9C9FC44D-63EA-4F5D-8DBD-F48D32B579BF} = {6A7C080F-C167-4736-8ECB-063515FDA5EF}
+		{846A1F99-CF31-4B5D-AE09-A278B0EF2799} = {6A7C080F-C167-4736-8ECB-063515FDA5EF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E88500B7-FA06-41B6-98BB-51B5DF4356FC}

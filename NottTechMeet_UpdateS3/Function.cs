@@ -1,14 +1,10 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-
 using Amazon.Lambda.Core;
 using Amazon.S3;
 using Amazon.S3.Model;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using NottTechMeet_IO;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.

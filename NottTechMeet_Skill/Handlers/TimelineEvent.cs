@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Alexa.NET;
+using Alexa.NET.Request.Type;
 using Alexa.NET.RequestHandlers;
 using Alexa.NET.Response;
 
@@ -11,12 +10,29 @@ namespace NottTechMeet_Skill.Handlers
     {
         public bool CanHandle(AlexaRequestInformation information)
         {
-            throw new NotImplementedException();
+            return information.SkillRequest.Request is IntentRequest intentRequest && intentRequest.Intent.Name == "Meetups";
         }
 
         public Task<SkillResponse> Handle(AlexaRequestInformation information)
         {
-            throw new NotImplementedException();
+            var intentRequest = information.SkillRequest.Request as IntentRequest;
+            var slots = intentRequest.Intent.Slots;
+            if (!slots.ContainsKey("timeslot") || string.IsNullOrEmpty(slots["timeslot"].Value))
+            {
+                return NextEvent();
+            }
+
+            return EventsInTimeline(slots["timeslot"].Value);
+        }
+
+        private Task<SkillResponse> NextEvent()
+        {
+            return Task.FromResult(ResponseBuilder.Tell("There's a talk happening right now!"));
+        }
+
+        private Task<SkillResponse> EventsInTimeline(string slot)
+        {
+            return Task.FromResult(ResponseBuilder.Tell("tech meet response"));
         }
     }
 }

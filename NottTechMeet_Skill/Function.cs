@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Alexa.NET.Request;
 using Alexa.NET.RequestHandlers;
@@ -21,11 +18,13 @@ namespace NottTechMeet_Skill
         public Function()
         {
             Pipeline = new AlexaRequestPipeline( new IAlexaRequestHandler[]{
+                new Launch(),
+                new FallbackIntent(),
                 new NextEvent(),
                 new TimelineEvent(),
                 new GroupInfo(),
                 new UnknownGroup(),
-                new FallbackIntent(), 
+                new SessionEnd() 
             });
         }
 
