@@ -10,10 +10,7 @@ namespace NottTechMeet_Skill.Handlers
     {
         public override SkillResponse HandleSyncRequest(AlexaRequestInformation information)
         {
-            var skillName = Environment.GetEnvironmentVariable("skill_name") ?? "demo talk";
-            return ResponseBuilder.Ask(
-                $"Hi there and welcome to {skillName}. What events can we help you find?",
-                new Reprompt("What events can we help you with today?"));
+            return ResponseBuilder.Ask("Welcome to Nottingham Tech, ask about events from your favourite nottingham meetup", null);
         }
     }
 }

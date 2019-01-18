@@ -2,7 +2,9 @@ using System.Threading.Tasks;
 using Alexa.NET.Request;
 using Alexa.NET.RequestHandlers;
 using Alexa.NET.Response;
+using Alexa.NET.StateManagement.S3;
 using Amazon.Lambda.Core;
+using Amazon.S3;
 using NottTechMeet_Skill.Handlers;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
@@ -12,20 +14,23 @@ namespace NottTechMeet_Skill
 {
     public class Function
     {
-        
+
         public AlexaRequestPipeline Pipeline { get; set; }
+        public S3PersistenceStore Store { get; set; }
 
         public Function()
         {
-            Pipeline = new AlexaRequestPipeline( new IAlexaRequestHandler[]{
+            var bucketName = "notttechmeet";
+            Store = new S3PersistenceStore("stoiveyp-datapersistencestore", new AmazonS3Client());
+            Pipeline = new AlexaRequestPipeline(new IAlexaRequestHandler[]
+            {
+                new Events_Calendar(bucketName), 
+                new Events_Next(bucketName), 
                 new Launch(),
-                new FallbackIntent(),
-                new NextEvent(),
-                new TimelineEvent(),
-                new GroupInfo(),
-                new UnknownGroup(),
-                new SessionEnd() 
-            });
+                new Fallback(),
+                new SessionEnded()
+            })
+            { StatePersistance = Store };
         }
 
         /// <summary>
@@ -34,9 +39,11 @@ namespace NottTechMeet_Skill
         /// <param name="input"></param>
         /// <param name="context"></param>
         /// <returns></returns>
-        public Task<SkillResponse> FunctionHandler(SkillRequest input, ILambdaContext context)
+        public async Task<SkillResponse> FunctionHandler(SkillRequest input, ILambdaContext context)
         {
-            return Pipeline.Process(input, context);
+            var response = await Pipeline.Process(input, context);
+            await Store.Save(input);
+            return response;
         }
     }
 }

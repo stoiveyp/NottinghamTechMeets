@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading.Tasks;
 using Amazon.S3;
 using Amazon.S3.Model;
@@ -29,10 +27,10 @@ namespace NottTechMeet_Skill
             return state.Events.Count;
         }
 
-        private static async Task<TechMeetState> GetTechMeet(string bucket, string key)
+        public static async Task<TechMeetState> GetTechMeet(string bucket, string key)
         {
             var s3 = new AmazonS3Client();
-            var state = await s3.GetObjectAsync(bucket, key);
+            var state = await s3.GetObjectAsync(bucket, key.Replace("-","_"));
             if (state.HttpStatusCode == HttpStatusCode.OK)
             {
                 using (var reader = new JsonTextReader(new StreamReader(state.ResponseStream)))

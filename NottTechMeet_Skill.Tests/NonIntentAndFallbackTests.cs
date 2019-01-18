@@ -8,10 +8,7 @@ namespace NottTechMeet_Skill.Tests
         [Fact]
         public void TestLaunch()
         {
-            var skillRequest = FluentRequest.
 
-            var skill = new Function();
-            skill.FunctionHandler()
         }
     }
 }
