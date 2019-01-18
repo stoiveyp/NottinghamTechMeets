@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using Alexa.NET.Request;
+using Alexa.NET.Request.Type;
 using Alexa.NET.RequestHandlers;
 using Alexa.NET.Response;
 using Alexa.NET.StateManagement.S3;
@@ -26,6 +27,8 @@ namespace NottTechMeet_Skill
             {
                 new Events_Calendar(bucketName), 
                 new Events_Next(bucketName), 
+                new EventDetail(),
+                new WhatEvent(), 
                 new Launch(),
                 new Fallback(),
                 new SessionEnded()

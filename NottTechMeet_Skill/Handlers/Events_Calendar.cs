@@ -32,24 +32,18 @@ namespace NottTechMeet_Skill.Handlers
 
             var dates = AmazonDateParser.Parse(intent.Slots[Consts.SlotDateRange].Value);
             var currentDate = LocalDate.FromDateTime(DateTime.Now);
-            var fromDate = currentDate;
-            var toDate = dates.To;
-
             var id = intent.Slots[Consts.SlotEvent].Id();
 
             var results = await S3Helper.GetTechMeet(BucketName, id);
-            var eventToRecognise = results.Events.Select(e =>
-            new {
-                RealDate=LocalDateTime.FromDateTime(DateTime.Parse(e.LocalDate)).Date,
-                Original=e
-            }).Where(d => d.RealDate >= fromDate && d.RealDate <= toDate).Select(e => e.Original).ToArray();
+            var eventToRecognise = results.Events.ToLocalEventTime()
+                .Where(d => d.Date >= dates.From && d.Date <= dates.To).ToArray();
 
-            if (eventToRecognise == null)
+            if (!eventToRecognise.Any())
             {
                 return SpeechHelper.NoEvent();
             }
 
-            return SpeechHelper.RespondToEvent(eventToRecognise);
+            return SpeechHelper.RespondToEvent(eventToRecognise,currentDate);
         }
     }
 }

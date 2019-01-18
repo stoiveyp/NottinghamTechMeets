@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace NottTechMeet_Skill.Handlers
+﻿namespace NottTechMeet_Skill
 {
     public class Consts
     {

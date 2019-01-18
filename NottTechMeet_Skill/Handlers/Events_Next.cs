@@ -1,8 +1,11 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections;
+using System.Linq;
 using System.Threading.Tasks;
 using Alexa.NET.Request.Type;
 using Alexa.NET.RequestHandlers;
 using Alexa.NET.Response;
+using NodaTime;
 
 namespace NottTechMeet_Skill.Handlers
 {
@@ -24,15 +27,22 @@ namespace NottTechMeet_Skill.Handlers
         public async Task<SkillResponse> Handle(AlexaRequestInformation information)
         {
             var id = ((IntentRequest) information.SkillRequest.Request).Intent.Slots[Consts.SlotEvent].Id();
-            var results = await S3Helper.GetTechMeet(BucketName, id);
-            var eventToRecognise = results.Events.FirstOrDefault();
+            var currentDate = LocalDate.FromDateTime(DateTime.Now);
 
-            if (eventToRecognise == null)
+            var results = await S3Helper.GetTechMeet(BucketName, id);
+            var events = results.Events.ToLocalEventTime();
+
+            if (!events.Any())
             {
                 return SpeechHelper.NoEvent();
             }
 
-            return SpeechHelper.RespondToEvent(eventToRecognise);
+            var eventToRecognise =
+                events.Any(l => l.Date > currentDate)
+                    ? events.Where(e => e.Date > currentDate)
+                    : events.Take(1);
+
+            return SpeechHelper.RespondToEvent(eventToRecognise.ToArray(),currentDate);
         }
     }
 }

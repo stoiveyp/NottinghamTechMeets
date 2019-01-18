@@ -25,7 +25,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NottTechMeet_IO", "NottTech
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NottTechMeet_Skill", "NottTechMeet_Skill\NottTechMeet_Skill.csproj", "{5032C8E9-A77C-4EC6-A3AE-D068A384783F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NottTechMeet_Skill.Tests", "NottTechMeet_Skill.Tests\NottTechMeet_Skill.Tests.csproj", "{846A1F99-CF31-4B5D-AE09-A278B0EF2799}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NottTechMeet_Skill.Tests", "NottTechMeet_Skill.Tests\NottTechMeet_Skill.Tests.csproj", "{846A1F99-CF31-4B5D-AE09-A278B0EF2799}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{272B159F-FEB7-43A2-B354-4ABB340BEC91}"
+	ProjectSection(SolutionItems) = preProject
+		AlexaJsonDefinition.json = AlexaJsonDefinition.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
