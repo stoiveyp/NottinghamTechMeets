@@ -10,6 +10,7 @@ using Alexa.NET.Request.Type;
 using Alexa.NET.RequestHandlers;
 using Alexa.NET.Response;
 using Alexa.NET.Response.APL;
+using Meetup.NetStandard.Response.Groups;
 using Newtonsoft.Json;
 using NodaTime;
 using NottTechMeet_IO;
@@ -53,32 +54,7 @@ namespace NottTechMeet_Skill.Handlers
                     ? events.Where(e => e.Date > currentDate)
                     : events).First();
 
-            var response = SpeechHelper.RespondToEvent(eventToRecognise, currentDate, "the latest event I've got information on");
-
-            if (request.Context.Viewport?.Shape != null)
-            {
-                var dateDisplay = $"{eventToRecognise.Date.ToDateTimeUnspecified():MMMM dd yyyy}, {eventToRecognise.Event.LocalTime}";
-                var dataSource = new KeyValueDataSource
-                {
-                    Properties = new Dictionary<string, object>
-                    {
-                        {"backgroundUrl",groupData.KeyPhoto?.HighRes ?? groupData.GroupPhoto?.HighRes},
-                        {"groupName",groupData.Name},
-                        {"eventDate", dateDisplay},
-                        {"eventTitle",eventToRecognise.Event.Name}
-                    }
-                };
-                var document = JsonConvert.DeserializeObject<APLDocument>(File.ReadAllText("NextEvent.json"));
-                document.Theme = ViewportTheme.Light;
-                response.Response.Directives.Add(new RenderDocumentDirective
-                {
-                    DataSources = new Dictionary<string, APLDataSource> { { "eventData", dataSource } },
-                    Document = document,
-                    Token = eventToRecognise.Event.Id
-                });
-            }
-
-            return response;
+            return SpeechHelper.SingleEventResponse(request, eventToRecognise, currentDate,groupData, "I've got information on a meetup event. ");
         }
     }
 }

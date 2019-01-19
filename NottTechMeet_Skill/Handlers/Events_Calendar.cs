@@ -37,7 +37,6 @@ namespace NottTechMeet_Skill.Handlers
 
             var meetup = new TechMeetState { GroupName = id };
             var rawEvents = await meetup.GetEventsFromS3();
-            //var groupData = await meetup.GetGroupFromS3();
 
             var eventToRecognise = rawEvents.ToLocalEventTime()
                 .Where(d => d.Date >= dates.From && d.Date <= dates.To).ToArray();
