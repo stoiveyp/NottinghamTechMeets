@@ -1,7 +1,7 @@
 ﻿{
   "type": "APL",
   "version": "1.0",
-  "theme": "light",
+  "theme": "dark",
   "import": [],
   "resources": [],
   "styles": {},
@@ -16,31 +16,47 @@
         "alignItems": "center",
         "items": [
           {
-            "type": "Image",
-            "source": "${payload.eventData.backgroundUrl}",
-            "scale": "best-fit",
-            "height": "100vw",
-            "width": "100vw",
-            "position": "absolute",
-            "align": "top", 
-            "overlayColor": "#FFFFFFBB"
+            "type": "Container",
+            "direction": "row",
+            "width": "40vw",
+            "items": [
+              {
+                "paddingTop": "2vw",
+                "paddingBottom": "2vw",
+                "paddingLeft": "2vw",
+                "type": "Text",
+                "fontSize": "2vw",
+                "text": "${payload.eventData.groupName}"
+              },
+              {
+                "paddingTop": "2vw",
+                "type": "Text",
+                "fontSize": "2vw",
+                "text": "   |   "
+              },
+              {
+                "paddingTop": "2vw",
+                "type": "Text",
+                "fontSize": "2vw",
+                "text": "${payload.eventData.eventDate}"
+              }
+            ]
           },
           {
-            "paddingTop": "5vw",
-            "type": "Text",
-            "text": "${payload.eventData.groupName}"
-          },
-          {
-            "paddingTop": "2vw",
-            "type": "Text",
-            "text": "${payload.eventData.eventDate}"
-          },
-          {
-            "paddingTop": "2vw",
+            "paddingTop": "1vw",
+            "paddingBottom": "2vw",
             "type": "Text",
             "text": "${payload.eventData.eventTitle}",
             "width": "80vw",
             "textAlign": "center"
+          },
+          {
+            "type": "Image",
+            "source": "${payload.eventData.backgroundUrl}",
+            "scale": "best-fill",
+            "height": "45vw",
+            "width": "100vw",
+            "grow": 0.2
           }
         ]
       }
