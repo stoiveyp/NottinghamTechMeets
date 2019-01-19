@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Alexa.NET.Request;
 using Alexa.NET.Request.Type;
 using Alexa.NET.RequestHandlers;
 using Alexa.NET.Response;
@@ -37,6 +38,7 @@ namespace NottTechMeet_Skill.Handlers
 
             var meetup = new TechMeetState { GroupName = id };
             var rawEvents = await meetup.GetEventsFromS3();
+            var groupData = await meetup.GetGroupFromS3();
 
             var eventToRecognise = rawEvents.ToLocalEventTime()
                 .Where(d => d.Date >= dates.From && d.Date <= dates.To).ToArray();
@@ -44,6 +46,11 @@ namespace NottTechMeet_Skill.Handlers
             if (!eventToRecognise.Any())
             {
                 return SpeechHelper.NoEvent(true);
+            }
+
+            if (eventToRecognise.Length == 1)
+            {
+                return SpeechHelper.SingleEventResponse((APLSkillRequest)information.SkillRequest, eventToRecognise.First(), currentDate, groupData, "I've got information on a meetup event. ");
             }
 
             return SpeechHelper.RespondToEvent(eventToRecognise,currentDate);
