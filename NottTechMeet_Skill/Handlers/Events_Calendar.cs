@@ -44,7 +44,7 @@ namespace NottTechMeet_Skill.Handlers
 
             if (!eventToRecognise.Any())
             {
-                return SpeechHelper.NoEvent();
+                return SpeechHelper.NoEvent(true);
             }
 
             return SpeechHelper.RespondToEvent(eventToRecognise,currentDate);
