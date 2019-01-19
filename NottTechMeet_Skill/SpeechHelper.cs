@@ -1,19 +1,17 @@
 ﻿using System.Linq;
-using System.Net.Http.Headers;
-using System.Xml.Serialization;
 using Alexa.NET;
 using Alexa.NET.Response;
 using Alexa.NET.Response.Ssml;
-using Meetup.NetStandard.Response.Events;
 using NodaTime;
 
 namespace NottTechMeet_Skill
 {
     public class SpeechHelper
     {
-        public static SkillResponse NoEvent()
+        public static SkillResponse NoEvent(bool dateRange = false)
         {
-            return ResponseBuilder.Tell("I'm afraid I'm not aware of any events for that meetup at the moment. If it's just been announced we may take a little while to update.");
+            var rangeText = dateRange ? "at that time" : "at the moment";
+            return ResponseBuilder.Tell("I'm afraid I've no events for the meetup "+ rangeText +". If it's just been announced we may take a little while to update.");
         }
 
         public static SkillResponse RespondToEvent(LocalEventTime meetup, LocalDate currentDate, string intro)
