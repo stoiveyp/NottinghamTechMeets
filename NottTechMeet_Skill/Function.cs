@@ -22,7 +22,6 @@ namespace NottTechMeet_Skill
         public Function()
         {
             var bucketName = "notttechmeet";
-            Store = new S3PersistenceStore("stoiveyp-datapersistencestore", new AmazonS3Client());
             Pipeline = new AlexaRequestPipeline(new IAlexaRequestHandler[]
             {
                 new Events_Calendar(bucketName), 
@@ -42,10 +41,9 @@ namespace NottTechMeet_Skill
         /// <param name="input"></param>
         /// <param name="context"></param>
         /// <returns></returns>
-        public async Task<SkillResponse> FunctionHandler(SkillRequest input, ILambdaContext context)
+        public async Task<SkillResponse> FunctionHandler(APLSkillRequest input, ILambdaContext context)
         {
             var response = await Pipeline.Process(input, context);
-            await Store.Save(input);
             return response;
         }
     }

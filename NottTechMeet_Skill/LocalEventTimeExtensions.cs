@@ -8,7 +8,7 @@ namespace NottTechMeet_Skill
 {
     public static class LocalEventTimeExtensions
     {
-        public static IEnumerable<LocalEventTime> ToLocalEventTime(this List<Event> events)
+        public static LocalEventTime[] ToLocalEventTime(this List<Event> events)
         {
             return events.Select(e =>
                 new LocalEventTime

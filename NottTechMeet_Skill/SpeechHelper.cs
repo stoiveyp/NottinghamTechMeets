@@ -1,6 +1,9 @@
 ﻿using System.Linq;
+using System.Net.Http.Headers;
+using System.Xml.Serialization;
 using Alexa.NET;
 using Alexa.NET.Response;
+using Alexa.NET.Response.Ssml;
 using Meetup.NetStandard.Response.Events;
 using NodaTime;
 
@@ -10,17 +13,47 @@ namespace NottTechMeet_Skill
     {
         public static SkillResponse NoEvent()
         {
-            return ResponseBuilder.Tell("No events");
+            return ResponseBuilder.Tell("I'm afraid I'm not aware of any events for that meetup at the moment. If it's just been announced we may take a little while to update.");
         }
 
-        public static SkillResponse RespondToEvent(LocalEventTime meetup, LocalDate currentDate)
+        public static SkillResponse RespondToEvent(LocalEventTime meetup, LocalDate currentDate, string intro)
         {
-            return ResponseBuilder.Tell(meetup.Event.Name);
+            var pronoun = meetup.Date < currentDate ? "it was" : "it's";
+            var humanDate = Humanizer.DateHumanizeExtensions.Humanize(
+                meetup.Date.ToDateTimeUnspecified().ToUniversalTime(),
+                currentDate.ToDateTimeUnspecified().ToUniversalTime());
+
+            var starter = new Sentence();
+            starter.Elements.Add(new PlainText($"{intro}, {pronoun} {humanDate}, {meetup.Date.ToDateTimeUnspecified().ToString("dddd dd MMM")}, and is titled {meetup.Event.Name}"));
+
+
+            var speech = new Speech(starter);
+            speech.Elements.Add(new Break{Strength = BreakStrength.Medium});
+            speech.Elements.Add(new Paragraph(new Sentence("Is there another meetup I could help with?")));
+            return ResponseBuilder.Ask(speech,null);
         }
 
         public static SkillResponse RespondToEvent(LocalEventTime[] meetups, LocalDate currentDate)
         {
-            return ResponseBuilder.Tell($"{meetups.Length} events. First. {meetups.FirstOrDefault()?.Event.Name}");
+            var inThePast = meetups.Where(e => e.Date < currentDate);
+            var inTheFuture = meetups.Where(e => e.Date > currentDate);
+            var todayEvent = meetups.Where(e => e.Date == currentDate);
+
+            var speech = new Speech();
+
+            if (inThePast.Any())
+            {
+                var previousEvent = new Paragraph();
+                speech.Elements.Add(previousEvent);
+            }
+
+            if (inTheFuture.Any())
+            {
+                var futureEvents = new Paragraph();
+                speech.Elements.Add(futureEvents);
+            }
+
+            return ResponseBuilder.Tell("whatever");
         }
     }
 }

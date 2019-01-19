@@ -6,6 +6,7 @@ using Alexa.NET.RequestHandlers;
 using Alexa.NET.Response;
 using NodaTime;
 using NodaTime.AmazonDate;
+using NottTechMeet_IO;
 
 namespace NottTechMeet_Skill.Handlers
 {
@@ -34,8 +35,11 @@ namespace NottTechMeet_Skill.Handlers
             var currentDate = LocalDate.FromDateTime(DateTime.Now);
             var id = intent.Slots[Consts.SlotEvent].Id();
 
-            var results = await S3Helper.GetTechMeet(BucketName, id);
-            var eventToRecognise = results.Events.ToLocalEventTime()
+            var meetup = new TechMeetState { GroupName = id };
+            var rawEvents = await meetup.GetEventsFromS3();
+            //var groupData = await meetup.GetGroupFromS3();
+
+            var eventToRecognise = rawEvents.ToLocalEventTime()
                 .Where(d => d.Date >= dates.From && d.Date <= dates.To).ToArray();
 
             if (!eventToRecognise.Any())

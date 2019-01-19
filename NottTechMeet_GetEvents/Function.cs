@@ -47,14 +47,13 @@ namespace NottTechMeet_GetEvents
 
             var events = await meetup.Events.For(request);
 
-            if (input.Events == null)
-            {
-                input.Events = new List<Event>();
-            }
+            var inputEvents = await input.GetEventsFromS3();
 
             Console.WriteLine($"found {events.Data.Length} events in response");
-            var finalList = events.Data.Concat(input.Events).Distinct(new EventEquality()).OrderByDescending(e => DateTime.Parse(e.LocalDate));
-            input.Events = finalList.ToList();
+            var finalList = events.Data.Concat(inputEvents).Distinct(new EventEquality()).OrderByDescending(e => DateTime.Parse(e.LocalDate));
+            inputEvents = finalList.ToList();
+
+            await input.SaveEventsToS3(inputEvents);
 
             return input;
         }

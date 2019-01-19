@@ -1,11 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 using Amazon.Lambda.Core;
 using Meetup.NetStandard;
-using Newtonsoft.Json.Linq;
 using NottTechMeet_IO;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
@@ -26,9 +22,10 @@ namespace NottTechMeet_GetDescription
         {
             var token = System.Environment.GetEnvironmentVariable("apitoken");
             var meetup = MeetupClient.WithApiToken(token);
-
             var group = await meetup.Groups.Get(state.GroupName);
-            state.Description = group.Data.Description;
+
+            await state.SaveFullGroupToS3(group.Data);
+
             return state;
         }
     }

@@ -9,7 +9,7 @@ namespace NottTechMeet_Skill.Handlers
     {
         public bool CanHandle(AlexaRequestInformation information)
         {
-            throw new NotImplementedException();
+            return false;
         }
 
         public Task<SkillResponse> Handle(AlexaRequestInformation information)

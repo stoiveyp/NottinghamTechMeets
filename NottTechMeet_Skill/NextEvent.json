@@ -1,0 +1,49 @@
+﻿{
+  "type": "APL",
+  "version": "1.0",
+  "theme": "light",
+  "import": [],
+  "resources": [],
+  "styles": {},
+  "layouts": {},
+  "mainTemplate": {
+    "parameters": [ "payload" ],
+    "items": [
+      {
+        "type": "Container",
+        "height": "100vw",
+        "width": "100vw",
+        "alignItems": "center",
+        "items": [
+          {
+            "type": "Image",
+            "source": "${payload.eventData.backgroundUrl}",
+            "scale": "best-fit",
+            "height": "100vw",
+            "width": "100vw",
+            "position": "absolute",
+            "align": "top", 
+            "overlayColor": "#FFFFFFBB"
+          },
+          {
+            "paddingTop": "5vw",
+            "type": "Text",
+            "text": "${payload.eventData.groupName}"
+          },
+          {
+            "paddingTop": "2vw",
+            "type": "Text",
+            "text": "${payload.eventData.eventDate}"
+          },
+          {
+            "paddingTop": "2vw",
+            "type": "Text",
+            "text": "${payload.eventData.eventTitle}",
+            "width": "80vw",
+            "textAlign": "center"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -14,8 +14,4 @@
     <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\NottTechMeet_UpdateS3\NottTechMeet_UpdateS3.csproj" />
-  </ItemGroup>
-
 </Project>

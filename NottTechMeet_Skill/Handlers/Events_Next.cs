@@ -1,11 +1,18 @@
 ﻿using System;
-using System.Collections;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Alexa.NET.APL;
+using Alexa.NET.APL.DataSources;
+using Alexa.NET.Request;
 using Alexa.NET.Request.Type;
 using Alexa.NET.RequestHandlers;
 using Alexa.NET.Response;
+using Alexa.NET.Response.APL;
+using Newtonsoft.Json;
 using NodaTime;
+using NottTechMeet_IO;
 
 namespace NottTechMeet_Skill.Handlers
 {
@@ -26,11 +33,15 @@ namespace NottTechMeet_Skill.Handlers
 
         public async Task<SkillResponse> Handle(AlexaRequestInformation information)
         {
-            var id = ((IntentRequest) information.SkillRequest.Request).Intent.Slots[Consts.SlotEvent].Id();
+            var request = information.SkillRequest as APLSkillRequest;
+            var id = ((IntentRequest)request.Request).Intent.Slots[Consts.SlotEvent].Id();
             var currentDate = LocalDate.FromDateTime(DateTime.Now);
 
-            var results = await S3Helper.GetTechMeet(BucketName, id);
-            var events = results.Events.ToLocalEventTime();
+            var meetup = new TechMeetState { GroupName = id };
+            var rawEvents = await meetup.GetEventsFromS3();
+            var groupData = await meetup.GetGroupFromS3();
+
+            var events = rawEvents.ToLocalEventTime();
 
             if (!events.Any())
             {
@@ -38,11 +49,36 @@ namespace NottTechMeet_Skill.Handlers
             }
 
             var eventToRecognise =
-                events.Any(l => l.Date > currentDate)
+                (events.Any(l => l.Date > currentDate)
                     ? events.Where(e => e.Date > currentDate)
-                    : events.Take(1);
+                    : events).First();
 
-            return SpeechHelper.RespondToEvent(eventToRecognise.ToArray(),currentDate);
+            var response = SpeechHelper.RespondToEvent(eventToRecognise, currentDate, "the latest event I've got information on");
+
+            if (request.Context.Viewport?.Shape != null)
+            {
+                var dateDisplay = $"{eventToRecognise.Date.ToDateTimeUnspecified():MMMM dd yyyy}, {eventToRecognise.Event.LocalTime}";
+                var dataSource = new KeyValueDataSource
+                {
+                    Properties = new Dictionary<string, object>
+                    {
+                        {"backgroundUrl",groupData.KeyPhoto?.HighRes ?? groupData.GroupPhoto?.HighRes},
+                        {"groupName",groupData.Name},
+                        {"eventDate", dateDisplay},
+                        {"eventTitle",eventToRecognise.Event.Name}
+                    }
+                };
+                var document = JsonConvert.DeserializeObject<APLDocument>(File.ReadAllText("NextEvent.json"));
+                document.Theme = ViewportTheme.Light;
+                response.Response.Directives.Add(new RenderDocumentDirective
+                {
+                    DataSources = new Dictionary<string, APLDataSource> { { "eventData", dataSource } },
+                    Document = document,
+                    Token = eventToRecognise.Event.Id
+                });
+            }
+
+            return response;
         }
     }
 }

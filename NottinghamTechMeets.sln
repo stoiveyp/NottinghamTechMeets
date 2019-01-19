@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NottTechMeet_GetEvents", "N
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NottTechMeet_GetEvents.Tests", "NottTechMeet_GetEvents.Tests\NottTechMeet_GetEvents.Tests.csproj", "{03983A49-9F5F-46C3-A738-5D85AD58A5A5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NottTechMeet_UpdateS3", "NottTechMeet_UpdateS3\NottTechMeet_UpdateS3.csproj", "{E354EF16-FBA1-4EE8-B8B4-BC7D23BB74AD}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NottTechMeet_UpdateS3.Tests", "NottTechMeet_UpdateS3.Tests\NottTechMeet_UpdateS3.Tests.csproj", "{A36FFB9A-5AAB-4D4A-B0E3-852E51A1211A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{6A7C080F-C167-4736-8ECB-063515FDA5EF}"
@@ -54,10 +52,6 @@ Global
 		{03983A49-9F5F-46C3-A738-5D85AD58A5A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03983A49-9F5F-46C3-A738-5D85AD58A5A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03983A49-9F5F-46C3-A738-5D85AD58A5A5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E354EF16-FBA1-4EE8-B8B4-BC7D23BB74AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E354EF16-FBA1-4EE8-B8B4-BC7D23BB74AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E354EF16-FBA1-4EE8-B8B4-BC7D23BB74AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E354EF16-FBA1-4EE8-B8B4-BC7D23BB74AD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A36FFB9A-5AAB-4D4A-B0E3-852E51A1211A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A36FFB9A-5AAB-4D4A-B0E3-852E51A1211A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A36FFB9A-5AAB-4D4A-B0E3-852E51A1211A}.Release|Any CPU.ActiveCfg = Release|Any CPU

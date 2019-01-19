@@ -14,19 +14,6 @@ namespace NottTechMeet_Skill
     {
         public static JsonSerializer Serializer = JsonSerializer.Create();
 
-        public static async Task<int> EventCount(string bucket, string[] keys)
-        {
-            var tasks = keys.Select(key => EventCountSelect(bucket,key)).ToArray();
-            await Task.WhenAll(tasks);
-            return tasks.Where(t => t.IsCompletedSuccessfully).Aggregate(0, (total, value) => total + value.Result);
-        }
-
-        public static async Task<int> EventCountSelect(string bucket, string key)
-        {
-            var state = await GetTechMeet(bucket, key);
-            return state.Events.Count;
-        }
-
         public static async Task<TechMeetState> GetTechMeet(string bucket, string key)
         {
             var s3 = new AmazonS3Client();
