@@ -27,6 +27,7 @@ namespace NottTechMeet_Skill
                 new Events_Calendar(bucketName), 
                 new Events_Next(bucketName), 
                 new EventDetail(),
+                new FinishedIntents(), 
                 new WhatEvent(), 
                 new Launch(),
                 new Fallback(),
