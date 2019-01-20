@@ -8,5 +8,8 @@
 
         public const string SlotEvent = "event";
         public const string SlotDateRange = "daterange";
+
+        public const string DataPlainTextDescription = "plain_text_no_images_description";
+        public const string APLInterface = "Alexa.Presentation.APL";
     }
 }

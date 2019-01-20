@@ -66,7 +66,7 @@ namespace NottTechMeet_Skill
         {
             var response = SpeechHelper.RespondToEvent(eventToRecognise, currentDate, intro);
 
-            if (request.Context.Viewport?.Shape != null)
+            if (request.Context.System.Device.IsInterfaceSupported(Consts.APLInterface))
             {
                 var dateDisplay =
                     $"{eventToRecognise.Date.ToDateTimeUnspecified():MMMM dd yyyy}, {eventToRecognise.Event.LocalTime}";
@@ -81,7 +81,6 @@ namespace NottTechMeet_Skill
                     }
                 };
                 var document = JsonConvert.DeserializeObject<APLDocument>(File.ReadAllText("NextEvent.json"));
-                document.Theme = ViewportTheme.Light;
                 response.Response.Directives.Add(new RenderDocumentDirective
                 {
                     DataSources = new Dictionary<string, APLDataSource> { { "eventData", dataSource } },

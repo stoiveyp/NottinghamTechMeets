@@ -1,17 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Alexa.NET.APL;
-using Alexa.NET.APL.DataSources;
 using Alexa.NET.Request;
 using Alexa.NET.Request.Type;
 using Alexa.NET.RequestHandlers;
 using Alexa.NET.Response;
-using Alexa.NET.Response.APL;
-using Meetup.NetStandard.Response.Groups;
-using Newtonsoft.Json;
 using NodaTime;
 using NottTechMeet_IO;
 
