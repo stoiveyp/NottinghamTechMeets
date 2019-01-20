@@ -22,7 +22,7 @@ namespace NottTechMeet_GetDescription
         {
             var token = System.Environment.GetEnvironmentVariable("apitoken");
             var meetup = MeetupClient.WithApiToken(token);
-            var group = await meetup.Groups.Get(state.GroupName);
+            var group = await meetup.Groups.Get(state.GroupName,new []{"plain_text_no_images_description"});
 
             await state.SaveFullGroupToS3(group.Data);
 
