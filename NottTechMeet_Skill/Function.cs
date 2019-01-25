@@ -29,6 +29,7 @@ namespace NottTechMeet_Skill
                 new EventDetail(),
                 new FinishedIntents(), 
                 new WhatEvent(), 
+                new Help(), 
                 new Launch(),
                 new Fallback(),
                 new SessionEnded()

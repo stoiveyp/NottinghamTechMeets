@@ -1,0 +1,51 @@
+{
+  "StartAt": "GetDescription",
+  "States": {
+    "GetDescription": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:eu-west-1:802502866407:function:NottTechMeet_GetDescription",
+      "Next": "GetEvents"
+    },
+    "GetEvents": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:eu-west-1:802502866407:function:NottTechMeet_GetEvents",
+      "Next": "UpdateKillSwitch",
+      "Retry": [
+        {
+          "ErrorEquals": [ "States.TaskFailed" ],
+          "IntervalSeconds": 3,
+          "MaxAttempts": 4,
+          "BackoffRate": 1.5
+        }
+      ]
+    },
+    "Pause": {
+      "Type": "Wait",
+      "Seconds": 86400,
+      "Next": "GetDescription"
+    },
+    "UpdateKillSwitch": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:eu-west-1:802502866407:function:NottTechMeet_KillSwitch",
+      "Next": "IsDead"
+    },
+    "IsDead": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.active",
+          "BooleanEquals": false,
+          "Next": "Finished"
+        },
+        {
+          "Variable": "$.active",
+          "BooleanEquals": true,
+          "Next": "Pause"
+        }
+      ]
+    },
+    "Finished": {
+      "Type": "Succeed"
+    }
+  }
+}
