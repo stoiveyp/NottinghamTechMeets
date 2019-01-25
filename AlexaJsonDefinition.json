@@ -40,6 +40,8 @@
                         }
                     ],
                     "samples": [
+                        "about the next {event}",
+                        "about the next {event} {noun}",
                         "what meetups are coming up",
                         "what meetups are happening {daterange}",
                         "tell me about {event} {daterange}",
@@ -68,10 +70,20 @@
                         }
                     ],
                     "samples": [
+                        "what {noun} can I choose",
+                        "what {noun} can I pick from",
+                        "{noun}",
+                        "show me the {noun}",
+                        "list the {noun}",
+                        "what {noun} you have",
+                        "tell me what {noun} you monitor",
+                        "tell me what {noun} you track",
+                        "list the {noun} it knows about",
+                        "list the {noun} you know about",
                         "what {noun} do you know about",
                         "which {noun} can you tell me about",
-                        "what events do you have a calendar for",
-                        "which events do you work with",
+                        "what {noun} do you have a calendar for",
+                        "which {noun} do you work with",
                         "which {noun} do you track",
                         "what {noun} do you work with"
                     ]
@@ -85,6 +97,7 @@
                         }
                     ],
                     "samples": [
+                        "about {event}",
                         "ask about {event} ",
                         "information on {event}",
                         "tell me about {event}",
@@ -102,6 +115,7 @@
                             "name": {
                                 "value": "i o t nottingham",
                                 "synonyms": [
+                                    "Notts IOT",
                                     " not sayote",
                                     "i o t notts",
                                     "i o t knots",
@@ -116,6 +130,7 @@
                             "name": {
                                 "value": "dot net nots",
                                 "synonyms": [
+                                    "dot net knocks",
                                     "dot net nottingham",
                                     "dot net knots"
                                 ]
@@ -168,6 +183,7 @@
                             "name": {
                                 "value": "tech nottingham",
                                 "synonyms": [
+                                    "tech knots",
                                     "tech nott",
                                     "tech notts"
                                 ]
@@ -175,26 +191,35 @@
                         }
                     ]
                 },
-              {
-                "name": "nounName",
-                "values": [
-                  {
-                    "name": {
-                      "value": "meeting"
-                    }
-                  },
-                  {
-                    "name": {
-                      "value": "event"
-                    }
-                  },
-                  {
-                    "name": {
-                      "value": "meetup"
-                    }
-                  }
-                ]
-              }
+                {
+                    "name": "nounName",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "meeting",
+                                "synonyms": [
+                                    "meetings"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "event",
+                                "synonyms": [
+                                    "events"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "meetup",
+                                "synonyms": [
+                                    "meetups"
+                                ]
+                            }
+                        }
+                    ]
+                }
             ]
         },
         "dialog": {
@@ -291,19 +316,19 @@
                     }
                 ]
             },
-            {
-                "id": "Slot.Validation.570937831864.1419220990581.1454638789259",
-                "variations": [
-                    {
-                        "type": "PlainText",
-                        "value": "I'm not sure I know that meetup, please try another or ask me what meetups I can tell you about"
-                    },
-                    {
-                        "type": "PlainText",
-                        "value": "I dont recognise the meetup name, could you try again please or ask me about the meetups I know about"
-                    }
-                ]
-            },
+          {
+            "id": "Slot.Validation.570937831864.1419220990581.1454638789259",
+            "variations": [
+              {
+                "type": "PlainText",
+                "value": "I'm not sure I know that meetup, please try another or ask me what meetups I can tell you about"
+              },
+              {
+                "type": "PlainText",
+                "value": "I dont recognise the meetup name, could you try again please or ask me about the meetups I know about"
+              }
+            ]
+          },
             {
                 "id": "Elicit.Slot.570937831864.1419220990581",
                 "variations": [
