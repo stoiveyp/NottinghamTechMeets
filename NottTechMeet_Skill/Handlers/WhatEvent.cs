@@ -4,6 +4,7 @@ using Alexa.NET;
 using Alexa.NET.RequestHandlers;
 using Alexa.NET.RequestHandlers.Handlers;
 using Alexa.NET.Response;
+using Alexa.NET.Response.Ssml;
 
 namespace NottTechMeet_Skill.Handlers
 {
@@ -11,7 +12,12 @@ namespace NottTechMeet_Skill.Handlers
     {
         private static Dictionary<string, string> EventNames = new Dictionary<string, string>
         {
-            {"",""}
+            {"Tech Nottingham",""},
+            {"Women in Technology Nottingham",""},
+            {"DotNet Notts",""},
+            {"Notts JS" ,""},
+            {"Nottingham IOT",""},
+            {"PHP Minds",""}
         };
 
         public WhatEvent() : base("WhatEvent")
@@ -21,7 +27,20 @@ namespace NottTechMeet_Skill.Handlers
 
         public override SkillResponse HandleSyncRequest(AlexaRequestInformation information)
         {
-            return ResponseBuilder.Tell("none!");
+            var speech = new Speech(
+                new Paragraph(new PlainText("Okay, here's a list of the meetups being monitored"))
+                );
+
+            foreach (var techEvent in EventNames)
+            {
+                speech.Elements.Add(
+                    new Paragraph(
+                        new Sentence(new Sub(techEvent.Key,techEvent.Value))
+                    )
+                );
+            }
+
+            return ResponseBuilder.Tell(speech);
         }
     }
 }
