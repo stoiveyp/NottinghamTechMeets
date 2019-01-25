@@ -1,0 +1,60 @@
+{
+  "type": "APL",
+  "version": "1.0",
+  "theme": "dark",
+  "import": [],
+  "resources": [],
+  "styles": {},
+  "layouts": {},
+  "mainTemplate": {
+    "parameters": [
+      "payload"
+    ],
+    "items": [
+      {
+        "type": "Container",
+        "height": "100vw",
+        "width": "100vw",
+        "alignItems": "center",
+        "items": [
+          {
+            "type": "Container",
+            "direction": "row",
+            "width": "80vw",
+            "height": "10vw",
+            "items": [
+              {
+                "type": "Image",
+                "source": "${payload.eventData.backgroundUrl}",
+                "scale": "best-fill",
+                "height": "10vw",
+                "width": "10vw"
+              },
+              {
+                "paddingLeft": "2vw",
+                "type": "Text",
+                "text": "${payload.eventData.groupName}",
+                "textAlignVertical": "center"
+              }
+            ]
+          },
+          {
+            "type": "ScrollView",
+            "paddingTop": "2vw",
+            "height": "80vw",
+            "item": [
+              {
+                "type": "Text",
+                "id": "groupDescription", 
+                "textAlign": "stretch",
+                "text": "${payload.eventData.properties.text}",
+                "speech": "${payload.eventData.properties.speech}", 
+                "grow": 0.3
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

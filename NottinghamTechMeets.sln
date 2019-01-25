@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NottTechMeet_GetEvents", "N
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NottTechMeet_GetEvents.Tests", "NottTechMeet_GetEvents.Tests\NottTechMeet_GetEvents.Tests.csproj", "{03983A49-9F5F-46C3-A738-5D85AD58A5A5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NottTechMeet_UpdateS3", "NottTechMeet_UpdateS3\NottTechMeet_UpdateS3.csproj", "{E354EF16-FBA1-4EE8-B8B4-BC7D23BB74AD}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NottTechMeet_UpdateS3.Tests", "NottTechMeet_UpdateS3.Tests\NottTechMeet_UpdateS3.Tests.csproj", "{A36FFB9A-5AAB-4D4A-B0E3-852E51A1211A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{6A7C080F-C167-4736-8ECB-063515FDA5EF}"
@@ -21,7 +19,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NottTechMeet_KillSwitch", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NottTechMeet_KillSwitch.Tests", "NottTechMeet_KillSwitch.Tests\NottTechMeet_KillSwitch.Tests.csproj", "{9C9FC44D-63EA-4F5D-8DBD-F48D32B579BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NottTechMeet_IO", "NottTechMeet_IO\NottTechMeet_IO.csproj", "{85FD3D23-0BC5-4725-A010-3C119D70AFF7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NottTechMeet_IO", "NottTechMeet_IO\NottTechMeet_IO.csproj", "{85FD3D23-0BC5-4725-A010-3C119D70AFF7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NottTechMeet_Skill", "NottTechMeet_Skill\NottTechMeet_Skill.csproj", "{5032C8E9-A77C-4EC6-A3AE-D068A384783F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NottTechMeet_Skill.Tests", "NottTechMeet_Skill.Tests\NottTechMeet_Skill.Tests.csproj", "{846A1F99-CF31-4B5D-AE09-A278B0EF2799}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{272B159F-FEB7-43A2-B354-4ABB340BEC91}"
+	ProjectSection(SolutionItems) = preProject
+		AlexaJsonDefinition.json = AlexaJsonDefinition.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,10 +52,6 @@ Global
 		{03983A49-9F5F-46C3-A738-5D85AD58A5A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03983A49-9F5F-46C3-A738-5D85AD58A5A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03983A49-9F5F-46C3-A738-5D85AD58A5A5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E354EF16-FBA1-4EE8-B8B4-BC7D23BB74AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E354EF16-FBA1-4EE8-B8B4-BC7D23BB74AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E354EF16-FBA1-4EE8-B8B4-BC7D23BB74AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E354EF16-FBA1-4EE8-B8B4-BC7D23BB74AD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A36FFB9A-5AAB-4D4A-B0E3-852E51A1211A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A36FFB9A-5AAB-4D4A-B0E3-852E51A1211A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A36FFB9A-5AAB-4D4A-B0E3-852E51A1211A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -65,6 +68,14 @@ Global
 		{85FD3D23-0BC5-4725-A010-3C119D70AFF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{85FD3D23-0BC5-4725-A010-3C119D70AFF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{85FD3D23-0BC5-4725-A010-3C119D70AFF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5032C8E9-A77C-4EC6-A3AE-D068A384783F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5032C8E9-A77C-4EC6-A3AE-D068A384783F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5032C8E9-A77C-4EC6-A3AE-D068A384783F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5032C8E9-A77C-4EC6-A3AE-D068A384783F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{846A1F99-CF31-4B5D-AE09-A278B0EF2799}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{846A1F99-CF31-4B5D-AE09-A278B0EF2799}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{846A1F99-CF31-4B5D-AE09-A278B0EF2799}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{846A1F99-CF31-4B5D-AE09-A278B0EF2799}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,6 +85,7 @@ Global
 		{03983A49-9F5F-46C3-A738-5D85AD58A5A5} = {6A7C080F-C167-4736-8ECB-063515FDA5EF}
 		{A36FFB9A-5AAB-4D4A-B0E3-852E51A1211A} = {6A7C080F-C167-4736-8ECB-063515FDA5EF}
 		{9C9FC44D-63EA-4F5D-8DBD-F48D32B579BF} = {6A7C080F-C167-4736-8ECB-063515FDA5EF}
+		{846A1F99-CF31-4B5D-AE09-A278B0EF2799} = {6A7C080F-C167-4736-8ECB-063515FDA5EF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E88500B7-FA06-41B6-98BB-51B5DF4356FC}

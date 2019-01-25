@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+    <AWSProjectType>Lambda</AWSProjectType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Alexa.NET" Version="1.5.7" />
+    <PackageReference Include="Alexa.NET.APL" Version="3.6.1" />
+    <PackageReference Include="Alexa.NET.RequestHandlers" Version="3.1.0" />
+    <PackageReference Include="Amazon.Lambda.Core" Version="1.0.0" />
+    <PackageReference Include="Amazon.Lambda.Serialization.Json" Version="1.4.0" />
+    <PackageReference Include="AWSSDK.S3" Version="3.3.31.11" />
+    <PackageReference Include="Humanizer" Version="2.5.16" />
+    <PackageReference Include="NodaTime.AmazonDate" Version="1.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Amazon.Lambda.Tools" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NottTechMeet_IO\NottTechMeet_IO.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Alexa.NET.StateManagement.S3">
+      <HintPath>..\..\..\..\.nuget\packages\alexa.net.statemanagement.s3\1.0.0\lib\netstandard1.6\Alexa.NET.StateManagement.S3.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="EventDetail.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="NextEvent.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
