@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Alexa.NET;
@@ -37,6 +38,11 @@ namespace NottTechMeet_Skill
             speech.Elements.Add(new Break{Strength = BreakStrength.Medium});
             speech.Elements.Add(new Paragraph(new Sentence("Is there another meetup I could help with?")));
             return ResponseBuilder.Ask(speech,null);
+        }
+
+        public static string PickFrom(params string[] phrases)
+        {
+            return phrases[new Random().Next(0, phrases.Length - 1)];
         }
 
         public static SkillResponse RespondToEvent(LocalEventTime[] meetups, LocalDate currentDate)

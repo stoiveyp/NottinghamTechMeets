@@ -18,7 +18,7 @@ namespace NottTechMeet_Skill.Handlers
 
         public Task<SkillResponse> Handle(AlexaRequestInformation information)
         {
-            return Task.FromResult(ResponseBuilder.Tell("Okay. Hope you enjoy the meetups"));
+            return Task.FromResult(ResponseBuilder.Tell(SpeechHelper.PickFrom("Okay","Not a problem","okay, thank you")));
         }
     }
 }

@@ -1,20 +1,27 @@
 ﻿using System;
-using System.Threading.Tasks;
+using System.Collections.Generic;
+using Alexa.NET;
 using Alexa.NET.RequestHandlers;
+using Alexa.NET.RequestHandlers.Handlers;
 using Alexa.NET.Response;
 
 namespace NottTechMeet_Skill.Handlers
 {
-    public class WhatEvent:IAlexaRequestHandler
+    public class WhatEvent:IntentNameSynchronousRequestHandler
     {
-        public bool CanHandle(AlexaRequestInformation information)
+        private static Dictionary<string, string> EventNames = new Dictionary<string, string>
         {
-            return false;
+            {"",""}
+        };
+
+        public WhatEvent() : base("WhatEvent")
+        {
+            
         }
 
-        public Task<SkillResponse> Handle(AlexaRequestInformation information)
+        public override SkillResponse HandleSyncRequest(AlexaRequestInformation information)
         {
-            throw new NotImplementedException();
+            return ResponseBuilder.Tell("none!");
         }
     }
 }

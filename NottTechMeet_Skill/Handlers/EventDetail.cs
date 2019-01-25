@@ -69,7 +69,7 @@ namespace NottTechMeet_Skill.Handlers
             };
 
             var speech = new Speech(groupData.ExtraFields[Consts.DataPlainTextDescription].ToString().Split("\n\n")
-                .SelectMany(t => new ISsml[] {new Paragraph(new Sentence(new PlainText(t))),new PlainText("<br/><br/>") }).ToArray());
+                .SelectMany(t => new ISsml[] {new Paragraph(new Sentence(new PlainText(t))),new PlainText("\n\n") }).ToArray());
             AddKaraoke(speech,eventData);
             response.Directives.Add(directive);
             response.Directives.Add(new ExecuteCommandsDirective(groupData.Id.ToString(),new SpeakItem
