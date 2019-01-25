@@ -14,10 +14,10 @@ namespace NottTechMeet_Skill.Handlers
         {
             {"Tech Nottingham",""},
             {"Women in Technology Nottingham",""},
-            {"DotNet Notts",""},
-            {"Notts JS" ,""},
-            {"Nottingham IOT",""},
-            {"PHP Minds",""}
+            {"DotNet Notts","dot net knots"},
+            {"Notts JS" ,"knots j s"},
+            {"Nottingham IOT","nottingham i o t"},
+            {"PHP Minds","p h p minds"}
         };
 
         public WhatEvent() : base("WhatEvent")
@@ -33,10 +33,18 @@ namespace NottTechMeet_Skill.Handlers
 
             foreach (var techEvent in EventNames)
             {
+                var eventSentence = new Sentence();
+                if (string.IsNullOrWhiteSpace(techEvent.Value))
+                {
+                    eventSentence.Elements.Add(new PlainText(techEvent.Key));
+                }
+                else
+                {
+                    eventSentence.Elements.Add(new Sub(techEvent.Key, techEvent.Value));
+                }
+
                 speech.Elements.Add(
-                    new Paragraph(
-                        new Sentence(new Sub(techEvent.Key,techEvent.Value))
-                    )
+                    new Paragraph(eventSentence)
                 );
             }
 
