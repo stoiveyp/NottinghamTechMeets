@@ -48,7 +48,15 @@ namespace NottTechMeet_Skill.Handlers
                 );
             }
 
-            return ResponseBuilder.Tell(speech);
+            speech.Elements.Add(
+                new Paragraph(new PlainText("to find out about a meetup say, give me details on, followed by the meetup name."))
+            );
+
+            speech.Elements.Add(
+                new Paragraph(new PlainText("to find out about a meetup say, when's the meetup for, and then the meetup name"))
+            );
+
+            return ResponseBuilder.Ask(speech,null);
         }
     }
 }
