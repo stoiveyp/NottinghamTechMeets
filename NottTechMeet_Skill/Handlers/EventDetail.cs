@@ -44,7 +44,7 @@ namespace NottTechMeet_Skill.Handlers
             information.State.SetSession(SessionKeys.CurrentActivity, SkillActivities.GroupDetail);
             information.State.SetSession(SessionKeys.CurrentGroup, id);
 
-            return ResponseBuilder.Tell(group.ExtraFields[Consts.DataPlainTextDescription].ToString());
+            return ResponseBuilder.Tell(group.ExtraFields[Consts.DataPlainTextDescription].ToString().Replace("https://",string.Empty));
         }
 
         private void AddEventDisplay(ResponseBody response, Group groupData)
@@ -72,7 +72,7 @@ namespace NottTechMeet_Skill.Handlers
                 Token = groupData.Id.ToString()
             };
 
-            var speech = new Speech(groupData.ExtraFields[Consts.DataPlainTextDescription].ToString().Split("\n\n")
+            var speech = new Speech(groupData.ExtraFields[Consts.DataPlainTextDescription].ToString().Replace("https://",string.Empty).Split("\n\n")
                 .SelectMany(t => new ISsml[] { new Paragraph(new Sentence(new PlainText(t))), new PlainText("\n\n") }).ToArray());
             AddKaraoke(speech, eventData);
             response.Directives.Add(directive);
