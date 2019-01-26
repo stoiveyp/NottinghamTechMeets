@@ -30,6 +30,7 @@ namespace NottTechMeet_Skill.Handlers
 
         public async Task<SkillResponse> Handle(AlexaRequestInformation information)
         {
+            information.State.ClearSession();
             var intent = ((IntentRequest) information.SkillRequest.Request).Intent;
 
             var dates = AmazonDateParser.Parse(intent.Slots[Consts.SlotDateRange].Value);
@@ -39,6 +40,9 @@ namespace NottTechMeet_Skill.Handlers
             var meetup = new TechMeetState { GroupName = id };
             var rawEvents = await meetup.GetEventsFromS3();
             var groupData = await meetup.GetGroupFromS3();
+
+            information.State.SetSession(SessionKeys.CurrentActivity,SkillActivities.Event);
+            information.State.SetSession(SessionKeys.CurrentGroup,id);
 
             var eventToRecognise = rawEvents.ToLocalEventTime()
                 .Where(d => d.Date >= dates.From && d.Date <= dates.To).ToArray();

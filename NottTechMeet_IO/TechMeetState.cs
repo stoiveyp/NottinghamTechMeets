@@ -14,6 +14,13 @@ namespace NottTechMeet_IO
 {
     public class TechMeetState
     {
+        public TechMeetState() { }
+
+        public TechMeetState(string id)
+        {
+            GroupName = id;
+        }
+
         [JsonProperty("active")]
         public bool Active { get; set; }
 

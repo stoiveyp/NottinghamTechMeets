@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,7 +20,7 @@ using NottTechMeet_IO;
 
 namespace NottTechMeet_Skill.Handlers
 {
-    public class EventDetail:IntentNameRequestHandler
+    public class EventDetail : IntentNameRequestHandler
     {
         public EventDetail() : base(Consts.IntentEventDetail)
         {
@@ -27,18 +28,21 @@ namespace NottTechMeet_Skill.Handlers
 
         public override async Task<SkillResponse> Handle(AlexaRequestInformation information)
         {
-            var aplRequest = (APLSkillRequest) information.SkillRequest;
-            var intent = (IntentRequest) information.SkillRequest.Request;
+            var aplRequest = (APLSkillRequest)information.SkillRequest;
+            var intent = (IntentRequest)information.SkillRequest.Request;
             var id = intent.Intent.Slots[Consts.SlotEvent].Id();
-            var group = await new TechMeetState {GroupName = id}.GetGroupFromS3();
+            var group = await new TechMeetState(id).GetGroupFromS3();
 
             if (aplRequest.Context.System.Device.IsInterfaceSupported(Consts.APLInterface))
             {
                 var response = ResponseBuilder.Tell(string.Empty);
                 response.Response.OutputSpeech = null;
-                AddEventDisplay(response.Response,group);
+                AddEventDisplay(response.Response, group);
                 return response;
             }
+            information.State.ClearSession();
+            information.State.SetSession(SessionKeys.CurrentActivity, SkillActivities.GroupDetail);
+            information.State.SetSession(SessionKeys.CurrentGroup, id);
 
             return ResponseBuilder.Tell(group.ExtraFields[Consts.DataPlainTextDescription].ToString());
         }
@@ -69,10 +73,10 @@ namespace NottTechMeet_Skill.Handlers
             };
 
             var speech = new Speech(groupData.ExtraFields[Consts.DataPlainTextDescription].ToString().Split("\n\n")
-                .SelectMany(t => new ISsml[] {new Paragraph(new Sentence(new PlainText(t))),new PlainText("\n\n") }).ToArray());
-            AddKaraoke(speech,eventData);
+                .SelectMany(t => new ISsml[] { new Paragraph(new Sentence(new PlainText(t))), new PlainText("\n\n") }).ToArray());
+            AddKaraoke(speech, eventData);
             response.Directives.Add(directive);
-            response.Directives.Add(new ExecuteCommandsDirective(groupData.Id.ToString(),new SpeakItem
+            response.Directives.Add(new ExecuteCommandsDirective(groupData.Id.ToString(), new SpeakItem
             {
                 ComponentId = "groupDescription",
                 HighlightMode = "line"

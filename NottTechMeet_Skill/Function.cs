@@ -33,7 +33,7 @@ namespace NottTechMeet_Skill
                 new Launch(),
                 new Fallback(),
                 new SessionEnded()
-            })
+            },null,new []{new StateInterceptor()},null)
             { StatePersistance = Store };
         }
 

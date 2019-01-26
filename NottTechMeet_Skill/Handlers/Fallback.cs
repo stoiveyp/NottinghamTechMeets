@@ -24,6 +24,7 @@ namespace NottTechMeet_Skill.Handlers
         }
         public override SkillResponse HandleSyncRequest(AlexaRequestInformation information)
         {
+            information.State.ClearSession();
             return ResponseBuilder.Ask(PickOne(),null);
         }
 
