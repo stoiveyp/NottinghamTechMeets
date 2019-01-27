@@ -21,7 +21,7 @@
     },
     "Pause": {
       "Type": "Wait",
-      "Seconds": 86400,
+      "SecondsPath": "$.wait",
       "Next": "GetDescription"
     },
     "UpdateKillSwitch": {

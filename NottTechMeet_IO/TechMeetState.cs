@@ -30,6 +30,8 @@ namespace NottTechMeet_IO
         [JsonProperty("last_updated")]
         public DateTime? LastUpdated { get; set; }
 
+        [JsonProperty("wait")] public int Wait { get; set; } = 14400;
+
         [JsonIgnore] public string EnvSafeName => GroupName.Replace("-", "_");
         [JsonIgnore] public string EnvSafeEventName => EnvSafeName + "_events";
         [JsonIgnore] public string EnvSafeFullGroupName => EnvSafeName + "_group";
