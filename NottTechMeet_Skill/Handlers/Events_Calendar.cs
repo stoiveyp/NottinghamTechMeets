@@ -45,7 +45,7 @@ namespace NottTechMeet_Skill.Handlers
             information.State.SetSession(SessionKeys.CurrentGroup,id);
 
             var eventToRecognise = rawEvents.ToLocalEventTime()
-                .Where(d => d.Date >= dates.From && d.Date <= dates.To).ToArray();
+                .Where(d => d.Date >= dates.From && d.Date <= dates.To).Where(d => d.Date >= currentDate).ToArray();
 
             if (!eventToRecognise.Any())
             {
@@ -57,7 +57,7 @@ namespace NottTechMeet_Skill.Handlers
                 return SpeechHelper.SingleEventResponse((APLSkillRequest)information.SkillRequest, eventToRecognise.First(), currentDate, groupData, "I've got information on a meetup event. ");
             }
 
-            return SpeechHelper.RespondToEvent(eventToRecognise,currentDate);
+            return SpeechHelper.RespondToEvent(eventToRecognise,currentDate,groupData.Name);
         }
     }
 }
