@@ -143,7 +143,7 @@
                     "name": "AllEvent",
                     "slots": [
                         {
-                            "name": "dateRange",
+                            "name": "daterange",
                             "type": "AMAZON.DATE"
                         },
                         {
@@ -152,15 +152,17 @@
                         }
                     ],
                     "samples": [
+                        "when {noun} are on",
+                        "tell me about the {noun}",
                         "{noun} that are on",
                         "{noun} that are happening soon",
                         "upcoming {noun}",
                         "tell me about {noun}",
-                        "what's happening {dateRange}",
+                        "what's happening {daterange}",
                         "what's happening",
-                        "tell me about upcoming {noun} {dateRange}",
+                        "tell me about upcoming {noun} {daterange}",
                         "tell me about upcoming {noun}",
-                        "what {noun} are happening {dateRange}",
+                        "what {noun} are happening {daterange}",
                         "what {noun} are coming up"
                     ]
                 }
@@ -531,20 +533,20 @@
             },
             {
                 "id": "Elicit.Slot.355048322260.852615150971",
-              "variations": [
-                {
-                  "type": "PlainText",
-                  "value": "What meetup can I help you with"
-                },
-                {
-                  "type": "PlainText",
-                  "value": "Can you please tell me which meetup you'd like details for"
-                },
-                {
-                  "type": "PlainText",
-                  "value": "What meetup are you looking for"
-                }
-              ]
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "What meetup can I help you with"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Can you please tell me which meetup you'd like details for"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "What meetup are you looking for"
+                    }
+                ]
             },
             {
                 "id": "Slot.Validation.570937831864.1419220990581.1454638789259",
@@ -596,10 +598,10 @@
                         "type": "PlainText",
                         "value": "what time would you like that to happen"
                     },
-                    {
-                        "type": "PlainText",
-                        "value": "at what time"
-                    }
+                  {
+                    "type": "PlainText",
+                    "value": "at what time"
+                  }
                 ]
             }
         ]
