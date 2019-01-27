@@ -2,7 +2,12 @@
   "type": "APL",
   "version": "1.0",
   "theme": "dark",
-  "import": [],
+  "import": [
+    {
+      "name": "alexa-styles",
+      "version": "1.0.0"
+    }
+  ],
   "resources": [],
   "styles": {},
   "layouts": {},
@@ -19,37 +24,40 @@
         "items": [
           {
             "type": "Container",
-            "direction": "row",
-            "width": "80vw",
-            "height": "10vw",
+            "width": "100vw",
+            "height": "100vw",
+            "alignItems": "center",
             "items": [
               {
                 "type": "Image",
+                "position": "absolute",
                 "source": "${payload.eventData.backgroundUrl}",
-                "scale": "best-fill",
-                "height": "10vw",
-                "width": "10vw"
+                "scale": "best-fit",
+                "height": "100vw",
+                "width": "100vw",
+                "overlayColor": "#00000088"
               },
               {
-                "paddingLeft": "2vw",
+                "paddingTop": "2vw",
                 "type": "Text",
                 "text": "${payload.eventData.groupName}",
                 "textAlignVertical": "center"
-              }
-            ]
-          },
-          {
-            "type": "ScrollView",
-            "paddingTop": "2vw",
-            "height": "80vw",
-            "item": [
+              },
               {
-                "type": "Text",
-                "id": "groupDescription", 
-                "textAlign": "stretch",
-                "text": "${payload.eventData.properties.text}",
-                "speech": "${payload.eventData.properties.speech}", 
-                "grow": 0.3
+                "type": "ScrollView",
+                "height": "80vw",
+                "item": [
+                  {
+                    "type": "Text",
+                    "paddingLeft": "3vw",
+                    "paddingRight": "3vw",
+                    "paddingBottom": "3vw",
+                    "id": "groupDescription",
+                    "text": "${payload.eventData.properties.text}",
+                    "speech": "${payload.eventData.properties.speech}",
+                    "grow": 0.3
+                  }
+                ]
               }
             ]
           }
