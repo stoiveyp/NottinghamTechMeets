@@ -52,7 +52,7 @@ namespace NottTechMeet_Skill.Handlers
         {
             if (int.TryParse(dateId, out int relativeDays))
             {
-                return fromDateTime.Minus(Period.FromDays(relativeDays));
+                return fromDateTime.Plus(Period.FromDays(relativeDays));
             }
 
             if(Enum.TryParse(typeof(IsoDayOfWeek),dateId,true,out object dayOfWeek))

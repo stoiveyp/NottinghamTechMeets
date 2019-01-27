@@ -2,7 +2,10 @@
   "type": "APL",
   "version": "1.0",
   "theme": "dark",
-  "import": [],
+  "import": [{
+    "name": "alexa-styles",
+    "version" : "1.0.0"
+  }],
   "resources": [],
   "styles": {},
   "layouts": {},
@@ -16,30 +19,27 @@
         "alignItems": "center",
         "items": [
           {
-            "paddingTop": "2vw",
-            "paddingBottom": "1vw",
+            "type": "Image",
+            "position": "absolute",
+            "source": "${payload.eventData.backgroundUrl}",
+            "scale": "best-fit",
+            "height": "100vw",
+            "width": "100vw",
+            "overlayColor": "#00000088"
+          },
+          {
             "type": "Text",
-            "width": "80vw",
-            "fontSize": "2vw",
-            "textAlign": "center",
+            "paddingTop": "10vw",
+            "style": "textStyleDetail",
+            "textAlignVertical": "center",
             "text": "${payload.eventData.groupName}  |  ${payload.eventData.eventDate}"
           },
           {
-            "paddingTop": "1vw",
-            "paddingBottom": "2vw",
             "type": "Text",
+            "textAlign": "center",
+            "textAlignVertical": "center",
             "text": "${payload.eventData.eventTitle}",
-            "width": "80vw",
-            "textAlign": "center"
-          },
-          {
-            "type": "Image",
-            "source": "${payload.eventData.backgroundUrl}",
-            "scale": "best-fill",
-            "height": "45vw",
-            "width": "100vw",
-            "grow": 0.2,
-            "opacity": 1
+            "style": "textStyleDisplay4"
           }
         ]
       }
