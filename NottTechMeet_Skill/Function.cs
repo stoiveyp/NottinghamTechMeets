@@ -28,6 +28,8 @@ namespace NottTechMeet_Skill
                 new Events_Next(bucketName),
                 new Events_Calendar(bucketName), 
                 new EventDetail(),
+                new EventsAllWithDates(),
+                new EventsAll(),
                 new WhatEvent(), 
                 new InvalidReminder(), 
                 new ReminderConfirmation(), 

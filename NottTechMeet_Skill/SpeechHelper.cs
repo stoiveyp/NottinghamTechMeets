@@ -49,8 +49,9 @@ namespace NottTechMeet_Skill
         {
             var speech = new Speech();
             var hasEvent = !string.IsNullOrWhiteSpace(eventName);
+            var plural = meetups.Length > 1;
 
-            var starterSentence = new Sentence($"I've got information on {meetups.Length} events");
+            var starterSentence = new Sentence($"I've got information on {meetups.Length} event{(plural ? "s" : string.Empty)}");
             speech.Elements.Add(new Paragraph(starterSentence));
             if (hasEvent)
             {

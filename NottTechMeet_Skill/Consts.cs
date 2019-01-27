@@ -2,6 +2,7 @@
 {
     public class Consts
     {
+        public const string IntentAllEvent = "AllEvent";
         public const string IntentNextEvent = "NextEvent";
         public const string IntentWhatEvent = "WhatEvent";
         public const string IntentEventDetail = "EventDetail";
