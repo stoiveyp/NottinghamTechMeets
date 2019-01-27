@@ -45,22 +45,28 @@ namespace NottTechMeet_Skill
             return phrases[new Random().Next(0, phrases.Length - 1)];
         }
 
-        public static SkillResponse RespondToEvent(LocalEventTime[] meetups, LocalDate currentDate, string eventName == null)
+        public static SkillResponse RespondToEvent(LocalEventTime[] meetups, LocalDate currentDate, string eventName = null)
         {
             var speech = new Speech();
-            speech.Elements.Add(new Paragraph(new Sentence($"I've got information on {meetups.Length} events")));
+            var hasEvent = !string.IsNullOrWhiteSpace(eventName);
+
+            var starterSentence = new Sentence($"I've got information on {meetups.Length} events");
+            speech.Elements.Add(new Paragraph(starterSentence));
+            if (hasEvent)
+            {
+                starterSentence.Elements.Add(new PlainText(" for " + eventName));
+            }
 
             foreach (var meetup in meetups)
             {
-
-
                 var humanDate = Humanizer.DateHumanizeExtensions.Humanize(
                     meetup.Date.ToDateTimeUnspecified().ToUniversalTime(),
                     currentDate.ToDateTimeUnspecified().ToUniversalTime());
 
-                speech.Elements.Add(new Paragraph(new Sentence("on ")));
+                var sentence = new Sentence(humanDate);
+                sentence.Elements.Add(new PlainText($" there's {meetup.Event.Group.Name}. {meetup.Event.Name}"));
+                speech.Elements.Add(new Paragraph(sentence));
             }
-            speech.Elements.Add(new Speech());
 
             return ResponseBuilder.Ask(speech,null);
         }
