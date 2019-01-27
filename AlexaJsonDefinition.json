@@ -42,7 +42,6 @@
                     "samples": [
                         "about the next {event}",
                         "about the next {event} {noun}",
-                        "what meetups are coming up",
                         "what meetups are happening {daterange}",
                         "tell me about {event} {daterange}",
                         "what about {event}",
@@ -129,6 +128,7 @@
                         }
                     ],
                     "samples": [
+                        "when's the next {noun}",
                         "remind me about this {relativeDate}",
                         "remind me {relativeDate}",
                         "remind me",
@@ -137,6 +137,31 @@
                         "remind me about this",
                         "remind me about this {noun}",
                         "set a reminder"
+                    ]
+                },
+                {
+                    "name": "AllEvent",
+                    "slots": [
+                        {
+                            "name": "dateRange",
+                            "type": "AMAZON.DATE"
+                        },
+                        {
+                            "name": "noun",
+                            "type": "nounName"
+                        }
+                    ],
+                    "samples": [
+                        "{noun} that are on",
+                        "{noun} that are happening soon",
+                        "upcoming {noun}",
+                        "tell me about {noun}",
+                        "what's happening {dateRange}",
+                        "what's happening",
+                        "tell me about upcoming {noun} {dateRange}",
+                        "tell me about upcoming {noun}",
+                        "what {noun} are happening {dateRange}",
+                        "what {noun} are coming up"
                     ]
                 }
             ],
@@ -260,130 +285,130 @@
                 },
                 {
                     "name": "relativeDate",
-                  "values": [
-                    {
-                      "id": "sunday",
-                      "name": {
-                        "value": "the sunday before",
-                        "synonyms": [
-                          "that sunday",
-                          "sunday"
-                        ]
-                      }
-                    },
-                    {
-                      "id": "saturday",
-                      "name": {
-                        "value": "the saturday before",
-                        "synonyms": [
-                          "saturday",
-                          "that saturday"
-                        ]
-                      }
-                    },
-                    {
-                      "id": "-7",
-                      "name": {
-                        "value": "a week before",
-                        "synonyms": [
-                          "a week",
-                          "the week before"
-                        ]
-                      }
-                    },
-                    {
-                      "id": "-3",
-                      "name": {
-                        "value": "3 days before",
-                        "synonyms": [
-                          "three days",
-                          "72 hours"
-                        ]
-                      }
-                    },
-                    {
-                      "id": "-2",
-                      "name": {
-                        "value": "2 days before",
-                        "synonyms": [
-                          "48 hours",
-                          "two days"
-                        ]
-                      }
-                    },
-                    {
-                      "id": "friday",
-                      "name": {
-                        "value": "the friday before",
-                        "synonyms": [
-                          "friday",
-                          "that friday"
-                        ]
-                      }
-                    },
-                    {
-                      "id": "thursday",
-                      "name": {
-                        "value": "the thursday before",
-                        "synonyms": [
-                          "that thursday",
-                          "thursday"
-                        ]
-                      }
-                    },
-                    {
-                      "id": "wednesday",
-                      "name": {
-                        "value": "the wednesday before",
-                        "synonyms": [
-                          "that wednesday",
-                          "wednesday"
-                        ]
-                      }
-                    },
-                    {
-                      "id": "tuesday",
-                      "name": {
-                        "value": "the tuesday before",
-                        "synonyms": [
-                          "that tuesday",
-                          "tuesday"
-                        ]
-                      }
-                    },
-                    {
-                      "id": "monday",
-                      "name": {
-                        "value": "the monday before",
-                        "synonyms": [
-                          "monday",
-                          "that monday"
-                        ]
-                      }
-                    },
-                    {
-                      "id": "-1",
-                      "name": {
-                        "value": "the day before",
-                        "synonyms": [
-                          "24 hours",
-                          "a day before"
-                        ]
-                      }
-                    },
-                    {
-                      "id": "0",
-                      "name": {
-                        "value": "same day",
-                        "synonyms": [
-                          "zero days",
-                          "that day",
-                          "on the day",
-                          "the same day"
-                        ]
-                      }
-                    }
-                  ]
+                    "values": [
+                        {
+                            "id": "sunday",
+                            "name": {
+                                "value": "the sunday before",
+                                "synonyms": [
+                                    "that sunday",
+                                    "sunday"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "saturday",
+                            "name": {
+                                "value": "the saturday before",
+                                "synonyms": [
+                                    "saturday",
+                                    "that saturday"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "-7",
+                            "name": {
+                                "value": "a week before",
+                                "synonyms": [
+                                    "a week",
+                                    "the week before"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "-3",
+                            "name": {
+                                "value": "3 days before",
+                                "synonyms": [
+                                    "three days",
+                                    "72 hours"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "-2",
+                            "name": {
+                                "value": "2 days before",
+                                "synonyms": [
+                                    "48 hours",
+                                    "two days"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "friday",
+                            "name": {
+                                "value": "the friday before",
+                                "synonyms": [
+                                    "friday",
+                                    "that friday"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "thursday",
+                            "name": {
+                                "value": "the thursday before",
+                                "synonyms": [
+                                    "that thursday",
+                                    "thursday"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "wednesday",
+                            "name": {
+                                "value": "the wednesday before",
+                                "synonyms": [
+                                    "that wednesday",
+                                    "wednesday"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "tuesday",
+                            "name": {
+                                "value": "the tuesday before",
+                                "synonyms": [
+                                    "that tuesday",
+                                    "tuesday"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "monday",
+                            "name": {
+                                "value": "the monday before",
+                                "synonyms": [
+                                    "monday",
+                                    "that monday"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "-1",
+                            "name": {
+                                "value": "the day before",
+                                "synonyms": [
+                                    "24 hours",
+                                    "a day before"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "0",
+                            "name": {
+                                "value": "same day",
+                                "synonyms": [
+                                    "zero days",
+                                    "that day",
+                                    "on the day",
+                                    "the same day"
+                                ]
+                            }
+                        }
+                    ]
                 }
             ]
         },
@@ -477,6 +502,13 @@
                             "prompts": {
                                 "elicitation": "Elicit.Slot.719453945544.1277970088921"
                             }
+                        },
+                        {
+                            "name": "confirmation",
+                            "type": "AMAZON.NUMBER",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
                         }
                     ]
                 }
@@ -499,20 +531,20 @@
             },
             {
                 "id": "Elicit.Slot.355048322260.852615150971",
-                "variations": [
-                    {
-                        "type": "PlainText",
-                        "value": "What meetup can I help you with"
-                    },
-                    {
-                        "type": "PlainText",
-                        "value": "Can you please tell me which meetup you'd like details for"
-                    },
-                    {
-                        "type": "PlainText",
-                        "value": "What meetup are you looking for"
-                    }
-                ]
+              "variations": [
+                {
+                  "type": "PlainText",
+                  "value": "What meetup can I help you with"
+                },
+                {
+                  "type": "PlainText",
+                  "value": "Can you please tell me which meetup you'd like details for"
+                },
+                {
+                  "type": "PlainText",
+                  "value": "What meetup are you looking for"
+                }
+              ]
             },
             {
                 "id": "Slot.Validation.570937831864.1419220990581.1454638789259",
