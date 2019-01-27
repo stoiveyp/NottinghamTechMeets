@@ -36,7 +36,7 @@ namespace NottTechMeet_Skill
 
             var speech = new Speech(starter);
             speech.Elements.Add(new Break{Strength = BreakStrength.Medium});
-            speech.Elements.Add(new Paragraph(new Sentence("Is there another meetup I could help with?")));
+            speech.Elements.Add(new Paragraph(new Sentence("Can I help with anything else?")));
             return ResponseBuilder.Ask(speech,null);
         }
 

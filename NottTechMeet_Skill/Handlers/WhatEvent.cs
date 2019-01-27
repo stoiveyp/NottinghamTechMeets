@@ -19,7 +19,7 @@ namespace NottTechMeet_Skill.Handlers
             {"PHP Minds","p h p minds"}
         };
 
-        public WhatEvent() : base("WhatEvent")
+        public WhatEvent() : base(Consts.IntentWhatEvent)
         {
 
         }

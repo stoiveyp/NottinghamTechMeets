@@ -15,9 +15,15 @@ namespace NottTechMeet_Skill.Handlers
 
         public override SkillResponse HandleSyncRequest(AlexaRequestInformation information)
         {
+            if (information.State.GetSession<SkillActivities>(SessionKeys.CurrentActivity) == SkillActivities.Event)
+            {
+
+            }
+
             return ResponseBuilder.Ask(@"I can tell you about several meetups in and around the Nottingham area.
-                                       To ask about a meetup, ask when the next meetup is and include the name of the event.
-if you're unsure of what meetups are available say, what meetups can I pick from",null,new Session());
+If you're unsure of what meetups are available say, what meetups can I pick from,
+                                       If you have a meetup you want to know about, ask when the next meetup is and include the name of the event. Once you've listened to the detail of an event you can ask to have a reminder set.
+", null,new Session());
         }
     }
 }
