@@ -28,6 +28,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{272B159F-FEB7-43A2-B354-4ABB340BEC91}"
 	ProjectSection(SolutionItems) = preProject
 		AlexaJsonDefinition.json = AlexaJsonDefinition.json
+		EventList.json = EventList.json
 		StepFunctionDefinition.json = StepFunctionDefinition.json
 	EndProjectSection
 EndProject

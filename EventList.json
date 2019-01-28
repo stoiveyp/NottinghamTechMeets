@@ -1,0 +1,66 @@
+{
+  "type": "APL",
+  "version": "1.0",
+  "theme": "dark",
+  "import": [
+    {
+      "name": "alexa-styles",
+      "version": "1.0.0"
+    }
+  ],
+  "resources": [],
+  "styles": {},
+  "layouts": {},
+  "mainTemplate": {
+    "parameters": [ "payload" ],
+    "items": [
+      {
+        "type": "Frame",
+        "height": "100vw",
+        "width": "100vw",
+        "backgroundColor": "#ffffff44",
+        "item": {
+          "type": "Container",
+          "height": "100vw",
+          "width": "100vw",
+          "alignItems": "center",
+          "items": [
+            {
+              "paddingTop": "2vw",
+              "paddingBottom": "2vw",
+              "type": "Text",
+              "style": "textStyleDisplay4",
+              "text": "Upcoming Events"
+            },
+            {
+              "type": "Sequence",
+              "height": "100vw",
+              "scrollDirection": "vertical",
+              "data": "${payload.events.listdata}",
+              "item": [
+                {
+                  "type": "Container",
+                  "items": [
+                    {
+                      "type": "Text",
+                      "textAlign": "center",
+                      "text": "${data.groupName} | ${data.date}",
+                      "style": "textStyleDetail"
+                    },
+                    {
+                      "type": "Text",
+                      "textAlign": "center",
+                      "style": "textStyleBody",
+                      "text": "${data.name}",
+                      "paddingBottom": "2vw"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
