@@ -51,7 +51,7 @@ namespace NottTechMeet_Skill.Handlers
                     : events).First();
 
             information.State.SetSession(SessionKeys.CurrentEvent, eventToRecognise.Event.Id);
-            return SpeechHelper.SingleEventResponse(request, eventToRecognise, currentDate, groupData, "I've got information on a meetup event. ");
+            return await SpeechHelper.SingleEventResponse(request, eventToRecognise, currentDate, groupData, "I've got information on a meetup event. ");
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Alexa.NET;
 using Alexa.NET.APL;
 using Alexa.NET.APL.DataSources;
@@ -72,7 +73,7 @@ namespace NottTechMeet_Skill
             return ResponseBuilder.Ask(speech,null);
         }
 
-        public static SkillResponse SingleEventResponse(APLSkillRequest request, LocalEventTime eventToRecognise, LocalDate currentDate, Group groupData, string intro)
+        public static async Task<SkillResponse> SingleEventResponse(APLSkillRequest request, LocalEventTime eventToRecognise, LocalDate currentDate, Group groupData, string intro)
         {
             var response = SpeechHelper.RespondToEvent(eventToRecognise, currentDate, intro);
 
@@ -90,7 +91,7 @@ namespace NottTechMeet_Skill
                         {"eventTitle", eventToRecognise.Event.Name}
                     }
                 };
-                var document = JsonConvert.DeserializeObject<APLDocument>(File.ReadAllText("NextEvent.json"));
+                var document = await S3Helper.GetDocument(System.Environment.GetEnvironmentVariable("bucket"), "assets/NextEvent.json");
                 response.Response.Directives.Add(new RenderDocumentDirective
                 {
                     DataSources = new Dictionary<string, APLDataSource> { { "eventData", dataSource } },

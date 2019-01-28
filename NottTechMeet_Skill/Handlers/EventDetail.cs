@@ -34,7 +34,7 @@ namespace NottTechMeet_Skill.Handlers
             var response = ResponseBuilder.Tell(group.ExtraFields[Consts.DataPlainTextDescription].ToString().Replace("https://", string.Empty));
             if (aplRequest.Context.System.Device.IsInterfaceSupported(Consts.APLInterface))
             {
-                AddEventDisplay(response.Response, group);
+                await AddEventDisplay(response.Response, group);
             }
             information.State.ClearSession();
             information.State.SetSession(SessionKeys.CurrentActivity, SkillActivities.GroupDetail);
@@ -43,7 +43,7 @@ namespace NottTechMeet_Skill.Handlers
             return response;
         }
 
-        private void AddEventDisplay(ResponseBody response, Group groupData)
+        private async Task AddEventDisplay(ResponseBody response, Group groupData)
         {
             var eventData = new ObjectDataSource
             {
@@ -56,7 +56,8 @@ namespace NottTechMeet_Skill.Handlers
                 Transformers = new List<APLTransformer>()
             };
 
-            var document = JsonConvert.DeserializeObject<APLDocument>(File.ReadAllText("EventDetail.json"));
+            
+            var document = await S3Helper.GetDocument(System.Environment.GetEnvironmentVariable("bucket"),"assets/EventDetail.json");
 
             var directive = new RenderDocumentDirective
             {

@@ -36,7 +36,7 @@ namespace NottTechMeet_Skill.Handlers
             var meetupTasks = Meetups.Select(m => new TechMeetState { GroupName = m }.GetEventsFromS3());
             var rawEvents = (await Task.WhenAll(meetupTasks)).SelectMany(t => t).ToLocalEventTime().Where(d => d.Date >= currentDate);
 
-            var eventToRecognise = rawEvents.OrderBy(l => l.Date).Take(3).ToArray();
+            var eventToRecognise = rawEvents.Where(l => l.Date < currentDate.PlusDays(14)).OrderBy(l => l.Date).ToArray();
 
             if (!eventToRecognise.Any())
             {

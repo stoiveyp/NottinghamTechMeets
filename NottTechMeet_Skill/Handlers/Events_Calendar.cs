@@ -55,7 +55,7 @@ namespace NottTechMeet_Skill.Handlers
 
             if (eventToRecognise.Length == 1)
             {
-                return SpeechHelper.SingleEventResponse((APLSkillRequest)information.SkillRequest, eventToRecognise.First(), currentDate, groupData, "I've got information on a meetup event. ");
+                return await SpeechHelper.SingleEventResponse((APLSkillRequest)information.SkillRequest, eventToRecognise.First(), currentDate, groupData, "I've got information on a meetup event. ");
             }
 
             return SpeechHelper.RespondToEvent(eventToRecognise,currentDate,groupData.Name);

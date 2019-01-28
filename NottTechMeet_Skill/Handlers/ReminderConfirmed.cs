@@ -116,7 +116,7 @@ namespace NottTechMeet_Skill.Handlers
 
             if (Enum.TryParse(typeof(IsoDayOfWeek), dateId, true, out object dayOfWeek))
             {
-                return fromDateTime.Previous((IsoDayOfWeek)dayOfWeek);
+                return fromDateTime.PlusDays(1).Previous((IsoDayOfWeek)dayOfWeek);
             }
 
             throw new InvalidOperationException("Something went badly wrong with the relative dates on the reminder");
