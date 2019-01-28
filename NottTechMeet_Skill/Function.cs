@@ -24,16 +24,22 @@ namespace NottTechMeet_Skill
             var bucketName = "notttechmeet";
             Pipeline = new AlexaRequestPipeline(new IAlexaRequestHandler[]
             {
-                new Events_Calendar(bucketName), 
-                new Events_Next(bucketName), 
-                new EventDetail(),
-                new FinishedIntents(), 
-                new WhatEvent(), 
-                new Help(), 
                 new Launch(),
-                new Fallback(),
-                new SessionEnded()
-            })
+                new Events_Next(bucketName),
+                new Events_Calendar(bucketName), 
+                new EventDetail(),
+                new EventsAllWithDates(),
+                new EventsAll(),
+                new WhatEvent(), 
+                new InvalidReminder(), 
+                new ReminderConfirmation(), 
+                new ReminderDenied(), 
+                new ReminderConfirmed(),
+                new Help(),
+                new SessionEnded(),
+                new FinishedIntents(),
+                new Fallback()
+            },null,new []{new StateInterceptor()},null)
             { StatePersistance = Store };
         }
 

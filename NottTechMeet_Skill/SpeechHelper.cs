@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Alexa.NET;
 using Alexa.NET.APL;
 using Alexa.NET.APL.DataSources;
@@ -36,7 +37,7 @@ namespace NottTechMeet_Skill
 
             var speech = new Speech(starter);
             speech.Elements.Add(new Break{Strength = BreakStrength.Medium});
-            speech.Elements.Add(new Paragraph(new Sentence("Is there another meetup I could help with?")));
+            speech.Elements.Add(new Paragraph(new Sentence("Can I help with anything else?")));
             return ResponseBuilder.Ask(speech,null);
         }
 
@@ -45,30 +46,34 @@ namespace NottTechMeet_Skill
             return phrases[new Random().Next(0, phrases.Length - 1)];
         }
 
-        public static SkillResponse RespondToEvent(LocalEventTime[] meetups, LocalDate currentDate)
+        public static SkillResponse RespondToEvent(LocalEventTime[] meetups, LocalDate currentDate, string eventName = null)
         {
-            var inThePast = meetups.Where(e => e.Date < currentDate);
-            var inTheFuture = meetups.Where(e => e.Date > currentDate);
-            var todayEvent = meetups.Where(e => e.Date == currentDate);
-
             var speech = new Speech();
+            var hasEvent = !string.IsNullOrWhiteSpace(eventName);
+            var plural = meetups.Length > 1;
 
-            if (inThePast.Any())
+            var starterSentence = new Sentence($"I've got information on {meetups.Length} event{(plural ? "s" : string.Empty)}");
+            speech.Elements.Add(new Paragraph(starterSentence));
+            if (hasEvent)
             {
-                var previousEvent = new Paragraph();
-                speech.Elements.Add(previousEvent);
+                starterSentence.Elements.Add(new PlainText(" for " + eventName));
             }
 
-            if (inTheFuture.Any())
+            foreach (var meetup in meetups)
             {
-                var futureEvents = new Paragraph();
-                speech.Elements.Add(futureEvents);
+                var humanDate = Humanizer.DateHumanizeExtensions.Humanize(
+                    meetup.Date.ToDateTimeUnspecified().ToUniversalTime(),
+                    currentDate.ToDateTimeUnspecified().ToUniversalTime());
+
+                var sentence = new Sentence(humanDate);
+                sentence.Elements.Add(new PlainText($" there's {meetup.Event.Group.Name}. {meetup.Event.Name}"));
+                speech.Elements.Add(new Paragraph(sentence));
             }
 
-            return ResponseBuilder.Tell("whatever");
+            return ResponseBuilder.Ask(speech,null);
         }
 
-        public static SkillResponse SingleEventResponse(APLSkillRequest request, LocalEventTime eventToRecognise, LocalDate currentDate, Group groupData, string intro)
+        public static async Task<SkillResponse> SingleEventResponse(APLSkillRequest request, LocalEventTime eventToRecognise, LocalDate currentDate, Group groupData, string intro)
         {
             var response = SpeechHelper.RespondToEvent(eventToRecognise, currentDate, intro);
 
@@ -86,7 +91,7 @@ namespace NottTechMeet_Skill
                         {"eventTitle", eventToRecognise.Event.Name}
                     }
                 };
-                var document = JsonConvert.DeserializeObject<APLDocument>(File.ReadAllText("NextEvent.json"));
+                var document = await S3Helper.GetDocument(System.Environment.GetEnvironmentVariable("bucket"), "assets/NextEvent.json");
                 response.Response.Directives.Add(new RenderDocumentDirective
                 {
                     DataSources = new Dictionary<string, APLDataSource> { { "eventData", dataSource } },

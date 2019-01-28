@@ -30,6 +30,7 @@ namespace NottTechMeet_Skill.Handlers
 
         public async Task<SkillResponse> Handle(AlexaRequestInformation information)
         {
+            information.State.ClearSession();
             var intent = ((IntentRequest) information.SkillRequest.Request).Intent;
 
             var dates = AmazonDateParser.Parse(intent.Slots[Consts.SlotDateRange].Value);
@@ -37,11 +38,15 @@ namespace NottTechMeet_Skill.Handlers
             var id = intent.Slots[Consts.SlotEvent].Id();
 
             var meetup = new TechMeetState { GroupName = id };
+
             var rawEvents = await meetup.GetEventsFromS3();
             var groupData = await meetup.GetGroupFromS3();
 
+            information.State.SetSession(SessionKeys.CurrentActivity,SkillActivities.Event);
+            information.State.SetSession(SessionKeys.CurrentGroup,id);
+
             var eventToRecognise = rawEvents.ToLocalEventTime()
-                .Where(d => d.Date >= dates.From && d.Date <= dates.To).ToArray();
+                .Where(d => d.Date >= dates.From && d.Date <= dates.To).Where(d => d.Date >= currentDate).ToArray();
 
             if (!eventToRecognise.Any())
             {
@@ -50,10 +55,10 @@ namespace NottTechMeet_Skill.Handlers
 
             if (eventToRecognise.Length == 1)
             {
-                return SpeechHelper.SingleEventResponse((APLSkillRequest)information.SkillRequest, eventToRecognise.First(), currentDate, groupData, "I've got information on a meetup event. ");
+                return await SpeechHelper.SingleEventResponse((APLSkillRequest)information.SkillRequest, eventToRecognise.First(), currentDate, groupData, "I've got information on a meetup event. ");
             }
 
-            return SpeechHelper.RespondToEvent(eventToRecognise,currentDate);
+            return SpeechHelper.RespondToEvent(eventToRecognise,currentDate,groupData.Name);
         }
     }
 }

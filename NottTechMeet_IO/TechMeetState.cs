@@ -14,6 +14,13 @@ namespace NottTechMeet_IO
 {
     public class TechMeetState
     {
+        public TechMeetState() { }
+
+        public TechMeetState(string id)
+        {
+            GroupName = id;
+        }
+
         [JsonProperty("active")]
         public bool Active { get; set; }
 
@@ -22,6 +29,8 @@ namespace NottTechMeet_IO
 
         [JsonProperty("last_updated")]
         public DateTime? LastUpdated { get; set; }
+
+        [JsonProperty("wait")] public int Wait { get; set; } = 14400;
 
         [JsonIgnore] public string EnvSafeName => GroupName.Replace("-", "_");
         [JsonIgnore] public string EnvSafeEventName => EnvSafeName + "_events";

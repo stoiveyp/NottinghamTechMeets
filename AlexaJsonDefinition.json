@@ -42,7 +42,6 @@
                     "samples": [
                         "about the next {event}",
                         "about the next {event} {noun}",
-                        "what meetups are coming up",
                         "what meetups are happening {daterange}",
                         "tell me about {event} {daterange}",
                         "what about {event}",
@@ -104,6 +103,68 @@
                         "what can you tell me about {event}",
                         "give me details on {event}"
                     ]
+                },
+                {
+                    "name": "Reminder",
+                    "slots": [
+                        {
+                            "name": "noun",
+                            "type": "nounName"
+                        },
+                        {
+                            "name": "relativeDate",
+                            "type": "relativeDate",
+                            "samples": [
+                                "{relativeDate}"
+                            ]
+                        },
+                        {
+                            "name": "timeOfDay",
+                            "type": "AMAZON.TIME"
+                        },
+                        {
+                            "name": "confirmation",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "when's the next {noun}",
+                        "remind me about this {relativeDate}",
+                        "remind me {relativeDate}",
+                        "remind me",
+                        "don't let me forget this",
+                        "create a reminder",
+                        "remind me about this",
+                        "remind me about this {noun}",
+                        "set a reminder"
+                    ]
+                },
+                {
+                    "name": "AllEvent",
+                    "slots": [
+                        {
+                            "name": "daterange",
+                            "type": "AMAZON.DATE"
+                        },
+                        {
+                            "name": "noun",
+                            "type": "nounName"
+                        }
+                    ],
+                    "samples": [
+                        "when {noun} are on",
+                        "tell me about the {noun}",
+                        "{noun} that are on",
+                        "{noun} that are happening soon",
+                        "upcoming {noun}",
+                        "tell me about {noun}",
+                        "what's happening {daterange}",
+                        "what's happening",
+                        "tell me about upcoming {noun} {daterange}",
+                        "tell me about upcoming {noun}",
+                        "what {noun} are happening {daterange}",
+                        "what {noun} are coming up"
+                    ]
                 }
             ],
             "types": [
@@ -155,6 +216,10 @@
                             "name": {
                                 "value": "women in tech",
                                 "synonyms": [
+                                    "woman in tech",
+                                    "woman in tech nottingham",
+                                    "woman in technology",
+                                    "women in technology",
                                     "with knock",
                                     "whitney",
                                     "wait not",
@@ -215,6 +280,133 @@
                                 "value": "meetup",
                                 "synonyms": [
                                     "meetups"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "relativeDate",
+                    "values": [
+                        {
+                            "id": "sunday",
+                            "name": {
+                                "value": "the sunday before",
+                                "synonyms": [
+                                    "that sunday",
+                                    "sunday"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "saturday",
+                            "name": {
+                                "value": "the saturday before",
+                                "synonyms": [
+                                    "saturday",
+                                    "that saturday"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "-7",
+                            "name": {
+                                "value": "a week before",
+                                "synonyms": [
+                                    "a week",
+                                    "the week before"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "-3",
+                            "name": {
+                                "value": "3 days before",
+                                "synonyms": [
+                                    "three days",
+                                    "72 hours"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "-2",
+                            "name": {
+                                "value": "2 days before",
+                                "synonyms": [
+                                    "48 hours",
+                                    "two days"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "friday",
+                            "name": {
+                                "value": "the friday before",
+                                "synonyms": [
+                                    "friday",
+                                    "that friday"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "thursday",
+                            "name": {
+                                "value": "the thursday before",
+                                "synonyms": [
+                                    "that thursday",
+                                    "thursday"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "wednesday",
+                            "name": {
+                                "value": "the wednesday before",
+                                "synonyms": [
+                                    "that wednesday",
+                                    "wednesday"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "tuesday",
+                            "name": {
+                                "value": "the tuesday before",
+                                "synonyms": [
+                                    "that tuesday",
+                                    "tuesday"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "monday",
+                            "name": {
+                                "value": "the monday before",
+                                "synonyms": [
+                                    "monday",
+                                    "that monday"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "-1",
+                            "name": {
+                                "value": "the day before",
+                                "synonyms": [
+                                    "24 hours",
+                                    "a day before"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "0",
+                            "name": {
+                                "value": "same day",
+                                "synonyms": [
+                                    "zero days",
+                                    "that day",
+                                    "on the day",
+                                    "the same day"
                                 ]
                             }
                         }
@@ -281,6 +473,46 @@
                             ]
                         }
                     ]
+                },
+                {
+                    "name": "Reminder",
+                    "delegationStrategy": "SKILL_RESPONSE",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "noun",
+                            "type": "nounName",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
+                        },
+                        {
+                            "name": "relativeDate",
+                            "type": "relativeDate",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.719453945544.1386926336022"
+                            }
+                        },
+                        {
+                            "name": "timeOfDay",
+                            "type": "AMAZON.TIME",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.719453945544.1277970088921"
+                            }
+                        },
+                        {
+                            "name": "confirmation",
+                            "type": "AMAZON.NUMBER",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
+                        }
+                    ]
                 }
             ],
             "delegationStrategy": "ALWAYS"
@@ -291,11 +523,11 @@
                 "variations": [
                     {
                         "type": "PlainText",
-                        "value": "I'm not sure I track that event, could you try again or ask what events are tracked. Thank you."
+                        "value": "I'm not sure I track {event} , could you try again or ask what events are tracked. Thank you."
                     },
                     {
                         "type": "PlainText",
-                        "value": "I don't recognise the name of the event, could you try again or ask what events are tracked. Thank you."
+                        "value": "I don't recognise the name {event} , could you try again or ask what events are tracked. Thank you."
                     }
                 ]
             },
@@ -316,19 +548,19 @@
                     }
                 ]
             },
-          {
-            "id": "Slot.Validation.570937831864.1419220990581.1454638789259",
-            "variations": [
-              {
-                "type": "PlainText",
-                "value": "I'm not sure I know that meetup, please try another or ask me what meetups I can tell you about"
-              },
-              {
-                "type": "PlainText",
-                "value": "I dont recognise the meetup name, could you try again please or ask me about the meetups I know about"
-              }
-            ]
-          },
+            {
+                "id": "Slot.Validation.570937831864.1419220990581.1454638789259",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "I'm not sure I know {event} , please try another or ask me what meetups I can tell you about"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "I dont recognise the meetup {event} , could you try again please or ask me about the meetups I know about"
+                    }
+                ]
+            },
             {
                 "id": "Elicit.Slot.570937831864.1419220990581",
                 "variations": [
@@ -340,6 +572,36 @@
                         "type": "PlainText",
                         "value": "what meetup would you like to know about"
                     }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.719453945544.1386926336022",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "how many days before would you like that"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "what day would you like the reminder"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.719453945544.1277970088921",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "for what time do you want the reminder"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "what time would you like that to happen"
+                    },
+                  {
+                    "type": "PlainText",
+                    "value": "at what time"
+                  }
                 ]
             }
         ]
