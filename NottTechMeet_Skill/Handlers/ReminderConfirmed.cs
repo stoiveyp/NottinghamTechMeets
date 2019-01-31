@@ -44,10 +44,10 @@ namespace NottTechMeet_Skill.Handlers
                 intent.Slots[Consts.SlotRelativeDate].Id());
             var timePieces = intent.Slots[Consts.SlotTimeOfDay].Value.Split(':');
             date.At(new LocalTime(int.Parse(timePieces[0]), int.Parse(timePieces[1])));
-            return await TrySendReminder(meetupEvent, date.ToDateTimeUnspecified(), aplRequest.Context.System.ApiAccessToken);
+            return await TrySendReminder(meetupEvent, date.ToDateTimeUnspecified(), aplRequest);
         }
 
-        private async Task<SkillResponse> TrySendReminder(Event meetupEvent, DateTime reminderDate, string accessToken)
+        private async Task<SkillResponse> TrySendReminder(Event meetupEvent, DateTime reminderDate, SkillRequest request)
         {
             var speech = new Speech(
                 new Paragraph(
@@ -71,7 +71,7 @@ namespace NottTechMeet_Skill.Handlers
                 })
             };
 
-            var client = new RemindersClient(RemindersClient.ReminderDomain, accessToken);
+            var client = new RemindersClient(request);
 
             try
             {
