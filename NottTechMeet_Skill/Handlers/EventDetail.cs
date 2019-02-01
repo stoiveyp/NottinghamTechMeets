@@ -31,10 +31,14 @@ namespace NottTechMeet_Skill.Handlers
             var id = intent.Intent.Slots[Consts.SlotEvent].Id();
             var group = await new TechMeetState(id).GetGroupFromS3();
 
-            var response = ResponseBuilder.Tell(group.ExtraFields[Consts.DataPlainTextDescription].ToString().Replace("https://", string.Empty));
+            var detail = group.ExtraFields[Consts.DataPlainTextDescription].ToString().Replace("https://", string.Empty)
+                .Split("\n\n").First();
+            detail = detail + (detail.Last() == '.' ? string.Empty : ".") + "\n\nYou can find out more information online";
+
+            var response = ResponseBuilder.Ask(detail + ". Would you like to know about another meetup?",null);
             if (aplRequest.Context.System.Device.IsInterfaceSupported(Consts.APLInterface))
             {
-                await AddEventDisplay(response.Response, group);
+                await AddEventDisplay(response.Response, group,detail);
             }
             information.State.ClearSession();
             information.State.SetSession(SessionKeys.CurrentActivity, SkillActivities.GroupDetail);
@@ -43,11 +47,14 @@ namespace NottTechMeet_Skill.Handlers
             return response;
         }
 
-        private async Task AddEventDisplay(ResponseBody response, Group groupData)
+        private async Task AddEventDisplay(ResponseBody response, Group groupData, string initialText)
         {
             var eventData = new ObjectDataSource
             {
-                Properties = new Dictionary<string, object>(),
+                Properties = new Dictionary<string, object>
+                {
+                    {"text",initialText}
+                },
                 TopLevelData = new Dictionary<string, object>
                 {
                     {"backgroundUrl", groupData.GroupPhoto?.HighRes ?? groupData.KeyPhoto?.HighRes},
@@ -56,8 +63,8 @@ namespace NottTechMeet_Skill.Handlers
                 Transformers = new List<APLTransformer>()
             };
 
-            
-            var document = await S3Helper.GetDocument(System.Environment.GetEnvironmentVariable("bucket"),"assets/EventDetail.json");
+
+            var document = await S3Helper.GetDocument(System.Environment.GetEnvironmentVariable("bucket"), "assets/EventDetail.json");
 
             var directive = new RenderDocumentDirective
             {
@@ -69,12 +76,6 @@ namespace NottTechMeet_Skill.Handlers
                 Token = groupData.Id.ToString()
             };
 
-            var initialText = groupData.ExtraFields[Consts.DataPlainTextDescription].ToString()
-                .Replace("https://", string.Empty);
-            eventData.Properties.Add("text",initialText);
-
-            var speech = new Speech(initialText.Split("\n\n")
-                .SelectMany(t => new ISsml[] { new Paragraph(new Sentence(new PlainText(t))), new PlainText("\n\n") }).ToArray());
             response.Directives.Add(directive);
         }
 
