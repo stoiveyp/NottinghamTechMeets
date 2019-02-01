@@ -28,8 +28,7 @@ namespace NottTechMeet_Skill.Handlers
 
         public async Task<SkillResponse> Handle(AlexaRequestInformation information)
         {
-            var aplRequest = (APLSkillRequest)information.SkillRequest;
-            var intent = ((IntentRequest)aplRequest.Request).Intent;
+            var intent = ((IntentRequest)information.SkillRequest.Request).Intent;
 
             var events = await new TechMeetState { GroupName = information.State.GetSession<string>(SessionKeys.CurrentGroup) }.GetEventsFromS3();
             var meetupEvent = events.FirstOrDefault(e => e.Id == information.State.GetSession<string>(SessionKeys.CurrentEvent));
@@ -40,33 +39,31 @@ namespace NottTechMeet_Skill.Handlers
                     "I'm sorry, but I can't seem to find the last event you looked for. If you look at another event I can set a reminder then");
             }
 
-            var date = CalculateReminderDate(LocalDate.FromDateTime(DateTime.Parse(meetupEvent.LocalDate)),
-                intent.Slots[Consts.SlotRelativeDate].Id());
-            var timePieces = intent.Slots[Consts.SlotTimeOfDay].Value.Split(':');
-            date.At(new LocalTime(int.Parse(timePieces[0]), int.Parse(timePieces[1])));
-            return await TrySendReminder(meetupEvent, date.ToDateTimeUnspecified(), aplRequest);
+            var meetupDate = LocalDate.FromDateTime(DateTime.Parse(meetupEvent.LocalDate));
+            var reminderDateTime = CalculateReminderDate(meetupDate,intent.Slots[Consts.SlotRelativeDate].Id()).AsLocalDateTime(intent.Slots[Consts.SlotTimeOfDay].Value);
+            return await TrySendReminder(meetupEvent, information.SkillRequest, reminderDateTime);
         }
 
-        private async Task<SkillResponse> TrySendReminder(Event meetupEvent, DateTime reminderDate, SkillRequest request)
+        private async Task<SkillResponse> TrySendReminder(Event meetupEvent, SkillRequest request, LocalDateTime reminderDateTime)
         {
             var speech = new Speech(
                 new Paragraph(
                 new Sentence(
                     new PlainText($"You have a {meetupEvent.Group.Name} meetup happening on "),
-                    new SayAs(reminderDate.ToString("f"), InterpretAs.Time)
+                    new SayAs(meetupEvent.AsLocalDateTime().ToDateTimeUnspecified().ToString("f"), InterpretAs.Time)
                 )));
 
             var reminder = new Reminder
             {
                 RequestTime = DateTime.Now,
-                Trigger = new AbsoluteTrigger(reminderDate),
+                Trigger = new AbsoluteTrigger(reminderDateTime.ToDateTimeUnspecified()),
                 PushNotification = PushNotification.Disabled,
                 AlertInformation = new AlertInformation(new[]
                 {
                     new SpokenContent
                     {
                         Locale = "en-GB",
-                        Text=$"You have a {meetupEvent.Group.Name} meetup happening on {reminderDate:f} ",
+                        Text=$"You have a {meetupEvent.Group.Name} meetup happening on {meetupEvent.AsLocalDateTime().ToDateTimeUnspecified():f} ",
                         Ssml = speech.ToXml()
                     }
                 })
