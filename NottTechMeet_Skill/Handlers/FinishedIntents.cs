@@ -11,7 +11,6 @@ namespace NottTechMeet_Skill.Handlers
         public bool CanHandle(AlexaRequestInformation information)
         {
             return information.SkillRequest.Request is IntentRequest intent &&
-                   !string.IsNullOrWhiteSpace(information.State.GetSession<string>(SessionKeys.CurrentActivity)) &&
                    (intent.Intent.Name == BuiltInIntent.No ||
                     intent.Intent.Name == BuiltInIntent.Cancel ||
                     intent.Intent.Name == BuiltInIntent.Stop);
