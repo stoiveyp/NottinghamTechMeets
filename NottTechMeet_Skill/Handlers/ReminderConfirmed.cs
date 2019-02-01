@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 using Alexa.NET;
 using Alexa.NET.Reminders;
@@ -10,6 +9,7 @@ using Alexa.NET.RequestHandlers;
 using Alexa.NET.Response;
 using Alexa.NET.Response.Ssml;
 using Meetup.NetStandard.Response.Events;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using NodaTime;
 using NottTechMeet_IO;
@@ -66,6 +66,7 @@ namespace NottTechMeet_Skill.Handlers
                     new SpokenContent
                     {
                         Locale = "en-GB",
+                        Text=$"You have a {meetupEvent.Group.Name} meetup happening on {reminderDate:f} ",
                         Ssml = speech.ToXml()
                     }
                 })
@@ -88,9 +89,15 @@ namespace NottTechMeet_Skill.Handlers
                 {
                     case "UNAUTHORIZED":
                     case "INVALID_BEARER_TOKEN":
+                        return ResponseBuilder.TellWithAskForPermissionConsentCard(
+                            "Unfortunately reminder permissions haven't been enabled for this skill. You can give permission by accessing the skill settings in your alexa app",
+                            new[] {"alexa::alerts:reminders:skill:readwrite"});
+                    case "DEVICE_NOT_SUPPORTED":
+                        return ResponseBuilder.Tell("I'm afraid this device doesn't support reminders");
+                    case "INVALID_ALERT_INFO":
+                        Console.WriteLine(JsonConvert.SerializeObject(reminder));
                         return ResponseBuilder.Tell(
-                            "Unfortunately reminder permissions haven't been enabled for this skill. You can give permission by accessing the skill settings in your alexa app");
-
+                            "Sorry, I was unable to create your reminder for an unexpected reason. Please try again");
                     default:
                     {
                         Console.WriteLine(ex.ToString());
