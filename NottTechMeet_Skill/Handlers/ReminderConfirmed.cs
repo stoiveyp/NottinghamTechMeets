@@ -90,7 +90,7 @@ namespace NottTechMeet_Skill.Handlers
                             "Unfortunately reminder permissions haven't been enabled for this skill. You can give permission by accessing the skill settings in your alexa app",
                             new[] {"alexa::alerts:reminders:skill:readwrite"});
                     case "DEVICE_NOT_SUPPORTED":
-                        return ResponseBuilder.Tell("I'm afraid this device doesn't support reminders");
+                        return ResponseBuilder.Ask("I'm afraid I can't create a reminder as this device doesn't support them, can I help with anything else?",null);
                     case "INVALID_ALERT_INFO":
                         Console.WriteLine(JsonConvert.SerializeObject(reminder));
                         return ResponseBuilder.Tell(
