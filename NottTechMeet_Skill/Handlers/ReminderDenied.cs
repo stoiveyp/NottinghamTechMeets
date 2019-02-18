@@ -27,7 +27,11 @@ namespace NottTechMeet_Skill.Handlers
         {
             var intent = ((IntentRequest)information.SkillRequest.Request).Intent;
             intent.ConfirmationStatus = ConfirmationStatus.None;
-            intent.Slots[Consts.SlotRelativeDate] = new Slot{Name=Consts.SlotRelativeDate};
+            if (intent.Slots.ContainsKey("confirmation"))
+            {
+                intent.Slots["confirmation"].ConfirmationStatus = ConfirmationStatus.None;
+            }
+            intent.Slots[Consts.SlotRelativeDate] = new Slot { Name = Consts.SlotRelativeDate };
             intent.Slots[Consts.SlotTimeOfDay] = new Slot { Name = Consts.SlotTimeOfDay };
             return Task.FromResult(ResponseBuilder.DialogDelegate(intent));
         }

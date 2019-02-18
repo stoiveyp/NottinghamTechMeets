@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Alexa.NET;
@@ -10,10 +9,8 @@ using Alexa.NET.Request.Type;
 using Alexa.NET.RequestHandlers;
 using Alexa.NET.RequestHandlers.Handlers;
 using Alexa.NET.Response;
-using Alexa.NET.Response.APL;
 using Alexa.NET.Response.Ssml;
 using Meetup.NetStandard.Response.Groups;
-using Newtonsoft.Json;
 using NottTechMeet_IO;
 
 namespace NottTechMeet_Skill.Handlers
@@ -38,7 +35,7 @@ namespace NottTechMeet_Skill.Handlers
             var response = ResponseBuilder.Ask(detail + ". Would you like to know about another meetup?",null);
             if (aplRequest.Context.System.Device.IsInterfaceSupported(Consts.APLInterface))
             {
-                await AddEventDisplay(response.Response, group,detail);
+                //await AddEventDisplay(response.Response, group,detail);
             }
             information.State.ClearSession();
             information.State.SetSession(SessionKeys.CurrentActivity, SkillActivities.GroupDetail);

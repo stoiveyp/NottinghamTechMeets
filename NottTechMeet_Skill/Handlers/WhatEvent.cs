@@ -16,7 +16,8 @@ namespace NottTechMeet_Skill.Handlers
             {"DotNet Notts","dot net knots"},
             {"Notts JS" ,"knots j s"},
             {"Nottingham IOT","nottingham i o t"},
-            {"PHP Minds","p h p minds"}
+            {"PHP Minds","p h p minds"},
+            {"Notts Techfast", "knots tech fast"}
         };
 
         public WhatEvent() : base(Consts.IntentWhatEvent)

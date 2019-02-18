@@ -1,609 +1,632 @@
 {
-    "interactionModel": {
-        "languageModel": {
-            "invocationName": "nottingham tech",
-            "intents": [
-                {
-                    "name": "AMAZON.FallbackIntent",
-                    "samples": []
-                },
-                {
-                    "name": "AMAZON.CancelIntent",
-                    "samples": []
-                },
-                {
-                    "name": "AMAZON.HelpIntent",
-                    "samples": []
-                },
-                {
-                    "name": "AMAZON.StopIntent",
-                    "samples": []
-                },
-                {
-                    "name": "AMAZON.NavigateHomeIntent",
-                    "samples": []
-                },
-                {
-                    "name": "NextEvent",
-                    "slots": [
-                        {
-                            "name": "event",
-                            "type": "event"
-                        },
-                        {
-                            "name": "noun",
-                            "type": "nounName"
-                        },
-                        {
-                            "name": "daterange",
-                            "type": "AMAZON.DATE"
-                        }
-                    ],
-                    "samples": [
-                        "about the next {event}",
-                        "about the next {event} {noun}",
-                        "what meetups are happening {daterange}",
-                        "tell me about {event} {daterange}",
-                        "what about {event}",
-                        "tell me if {event} is on {daterange}",
-                        "tell me if {event} is happening {daterange}",
-                        "tell me when {event} is on",
-                        "information about the next {event}",
-                        "what's the next {event}",
-                        "tell me about the next {event}",
-                        "what {event} {noun} are happening {daterange}",
-                        "when's the next {event} {noun}",
-                        "when's {event} on {daterange}",
-                        "when's the next {noun} for {event}",
-                        "when's the next {noun} for {event} {daterange}",
-                        "when's {event}",
-                        "When's the next {event} "
-                    ]
-                },
-                {
-                    "name": "WhatEvent",
-                    "slots": [
-                        {
-                            "name": "noun",
-                            "type": "nounName"
-                        }
-                    ],
-                    "samples": [
-                        "what {noun} can I choose",
-                        "what {noun} can I pick from",
-                        "{noun}",
-                        "show me the {noun}",
-                        "list the {noun}",
-                        "what {noun} you have",
-                        "tell me what {noun} you monitor",
-                        "tell me what {noun} you track",
-                        "list the {noun} it knows about",
-                        "list the {noun} you know about",
-                        "what {noun} do you know about",
-                        "which {noun} can you tell me about",
-                        "what {noun} do you have a calendar for",
-                        "which {noun} do you work with",
-                        "which {noun} do you track",
-                        "what {noun} do you work with"
-                    ]
-                },
-                {
-                    "name": "EventDetail",
-                    "slots": [
-                        {
-                            "name": "event",
-                            "type": "event"
-                        }
-                    ],
-                    "samples": [
-                        "about {event}",
-                        "ask about {event} ",
-                        "information on {event}",
-                        "tell me about {event}",
-                        "what can you tell me about {event}",
-                        "give me details on {event}"
-                    ]
-                },
-                {
-                    "name": "Reminder",
-                    "slots": [
-                        {
-                            "name": "noun",
-                            "type": "nounName"
-                        },
-                        {
-                            "name": "relativeDate",
-                            "type": "relativeDate",
-                            "samples": [
-                                "{relativeDate}"
-                            ]
-                        },
-                        {
-                            "name": "timeOfDay",
-                            "type": "AMAZON.TIME"
-                        },
-                        {
-                            "name": "confirmation",
-                            "type": "AMAZON.NUMBER"
-                        }
-                    ],
-                    "samples": [
-                        "when's the next {noun}",
-                        "remind me about this {relativeDate}",
-                        "remind me {relativeDate}",
-                        "remind me",
-                        "don't let me forget this",
-                        "create a reminder",
-                        "remind me about this",
-                        "remind me about this {noun}",
-                        "set a reminder"
-                    ]
-                },
-                {
-                    "name": "AllEvent",
-                    "slots": [
-                        {
-                            "name": "daterange",
-                            "type": "AMAZON.DATE"
-                        },
-                        {
-                            "name": "noun",
-                            "type": "nounName"
-                        }
-                    ],
-                    "samples": [
-                        "when {noun} are on",
-                        "tell me about the {noun}",
-                        "{noun} that are on",
-                        "{noun} that are happening soon",
-                        "upcoming {noun}",
-                        "tell me about {noun}",
-                        "what's happening {daterange}",
-                        "what's happening",
-                        "tell me about upcoming {noun} {daterange}",
-                        "tell me about upcoming {noun}",
-                        "what {noun} are happening {daterange}",
-                        "what {noun} are coming up"
-                    ]
-                }
-            ],
-            "types": [
-                {
-                    "name": "event",
-                    "values": [
-                        {
-                            "id": "Nottingham-IoT-Meetup",
-                            "name": {
-                                "value": "i o t nottingham",
-                                "synonyms": [
-                                    "Notts IOT",
-                                    " not sayote",
-                                    "i o t notts",
-                                    "i o t knots",
-                                    "notts i o t",
-                                    "nottingham i o t",
-                                    "knots i o t"
-                                ]
-                            }
-                        },
-                        {
-                            "id": "dotnetnotts",
-                            "name": {
-                                "value": "dot net nots",
-                                "synonyms": [
-                                    "dot net knocks",
-                                    "dot net nottingham",
-                                    "dot net knots"
-                                ]
-                            }
-                        },
-                        {
-                            "id": "NottsJS",
-                            "name": {
-                                "value": "nots j s",
-                                "synonyms": [
-                                    "knot j s",
-                                    "not js",
-                                    "not j's",
-                                    "not chairs",
-                                    "nottingham j s",
-                                    "knots j s"
-                                ]
-                            }
-                        },
-                        {
-                            "id": "Women-In-Tech-Nottingham",
-                            "name": {
-                                "value": "women in tech",
-                                "synonyms": [
-                                    "woman in tech",
-                                    "woman in tech nottingham",
-                                    "woman in technology",
-                                    "women in technology",
-                                    "with knock",
-                                    "whitney",
-                                    "wait not",
-                                    "week not",
-                                    "whitlocks",
-                                    "wit not",
-                                    "wit knot",
-                                    "wit knots",
-                                    "women in tech nottingham",
-                                    "wit notts"
-                                ]
-                            }
-                        },
-                        {
-                            "id": "PHPMiNDS-in-Nottingham",
-                            "name": {
-                                "value": "php minds",
-                                "synonyms": [
-                                    " p h p minds",
-                                    "phpminds"
-                                ]
-                            }
-                        },
-                        {
-                            "id": "tech-nottingham",
-                            "name": {
-                                "value": "tech nottingham",
-                                "synonyms": [
-                                    "tech knots",
-                                    "tech nott",
-                                    "tech notts"
-                                ]
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "nounName",
-                    "values": [
-                        {
-                            "name": {
-                                "value": "meeting",
-                                "synonyms": [
-                                    "meetings"
-                                ]
-                            }
-                        },
-                        {
-                            "name": {
-                                "value": "event",
-                                "synonyms": [
-                                    "events"
-                                ]
-                            }
-                        },
-                        {
-                            "name": {
-                                "value": "meetup",
-                                "synonyms": [
-                                    "meetups"
-                                ]
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "relativeDate",
-                    "values": [
-                        {
-                            "id": "sunday",
-                            "name": {
-                                "value": "the sunday before",
-                                "synonyms": [
-                                    "that sunday",
-                                    "sunday"
-                                ]
-                            }
-                        },
-                        {
-                            "id": "saturday",
-                            "name": {
-                                "value": "the saturday before",
-                                "synonyms": [
-                                    "saturday",
-                                    "that saturday"
-                                ]
-                            }
-                        },
-                        {
-                            "id": "-7",
-                            "name": {
-                                "value": "a week before",
-                                "synonyms": [
-                                    "a week",
-                                    "the week before"
-                                ]
-                            }
-                        },
-                        {
-                            "id": "-3",
-                            "name": {
-                                "value": "3 days before",
-                                "synonyms": [
-                                    "three days",
-                                    "72 hours"
-                                ]
-                            }
-                        },
-                        {
-                            "id": "-2",
-                            "name": {
-                                "value": "2 days before",
-                                "synonyms": [
-                                    "48 hours",
-                                    "two days"
-                                ]
-                            }
-                        },
-                        {
-                            "id": "friday",
-                            "name": {
-                                "value": "the friday before",
-                                "synonyms": [
-                                    "friday",
-                                    "that friday"
-                                ]
-                            }
-                        },
-                        {
-                            "id": "thursday",
-                            "name": {
-                                "value": "the thursday before",
-                                "synonyms": [
-                                    "that thursday",
-                                    "thursday"
-                                ]
-                            }
-                        },
-                        {
-                            "id": "wednesday",
-                            "name": {
-                                "value": "the wednesday before",
-                                "synonyms": [
-                                    "that wednesday",
-                                    "wednesday"
-                                ]
-                            }
-                        },
-                        {
-                            "id": "tuesday",
-                            "name": {
-                                "value": "the tuesday before",
-                                "synonyms": [
-                                    "that tuesday",
-                                    "tuesday"
-                                ]
-                            }
-                        },
-                        {
-                            "id": "monday",
-                            "name": {
-                                "value": "the monday before",
-                                "synonyms": [
-                                    "monday",
-                                    "that monday"
-                                ]
-                            }
-                        },
-                        {
-                            "id": "-1",
-                            "name": {
-                                "value": "the day before",
-                                "synonyms": [
-                                    "24 hours",
-                                    "a day before"
-                                ]
-                            }
-                        },
-                        {
-                            "id": "0",
-                            "name": {
-                                "value": "same day",
-                                "synonyms": [
-                                    "zero days",
-                                    "that day",
-                                    "on the day",
-                                    "the same day"
-                                ]
-                            }
-                        }
-                    ]
-                }
-            ]
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "nottingham tech",
+      "intents": [
+        {
+          "name": "AMAZON.FallbackIntent",
+          "samples": []
         },
-        "dialog": {
-            "intents": [
-                {
-                    "name": "NextEvent",
-                    "confirmationRequired": false,
-                    "prompts": {},
-                    "slots": [
-                        {
-                            "name": "event",
-                            "type": "event",
-                            "confirmationRequired": false,
-                            "elicitationRequired": true,
-                            "prompts": {
-                                "elicitation": "Elicit.Slot.355048322260.852615150971"
-                            },
-                            "validations": [
-                                {
-                                    "type": "hasEntityResolutionMatch",
-                                    "prompt": "Slot.Validation.355048322260.852615150971.452238151598"
-                                }
-                            ]
-                        },
-                        {
-                            "name": "noun",
-                            "type": "nounName",
-                            "confirmationRequired": false,
-                            "elicitationRequired": false,
-                            "prompts": {}
-                        },
-                        {
-                            "name": "daterange",
-                            "type": "AMAZON.DATE",
-                            "confirmationRequired": false,
-                            "elicitationRequired": false,
-                            "prompts": {}
-                        }
-                    ]
-                },
-                {
-                    "name": "EventDetail",
-                    "confirmationRequired": false,
-                    "prompts": {},
-                    "slots": [
-                        {
-                            "name": "event",
-                            "type": "event",
-                            "confirmationRequired": false,
-                            "elicitationRequired": true,
-                            "prompts": {
-                                "elicitation": "Elicit.Slot.570937831864.1419220990581"
-                            },
-                            "validations": [
-                                {
-                                    "type": "hasEntityResolutionMatch",
-                                    "prompt": "Slot.Validation.570937831864.1419220990581.1454638789259"
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "name": "Reminder",
-                    "delegationStrategy": "SKILL_RESPONSE",
-                    "confirmationRequired": false,
-                    "prompts": {},
-                    "slots": [
-                        {
-                            "name": "noun",
-                            "type": "nounName",
-                            "confirmationRequired": false,
-                            "elicitationRequired": false,
-                            "prompts": {}
-                        },
-                        {
-                            "name": "relativeDate",
-                            "type": "relativeDate",
-                            "confirmationRequired": false,
-                            "elicitationRequired": true,
-                            "prompts": {
-                                "elicitation": "Elicit.Slot.719453945544.1386926336022"
-                            }
-                        },
-                        {
-                            "name": "timeOfDay",
-                            "type": "AMAZON.TIME",
-                            "confirmationRequired": false,
-                            "elicitationRequired": true,
-                            "prompts": {
-                                "elicitation": "Elicit.Slot.719453945544.1277970088921"
-                            }
-                        },
-                        {
-                            "name": "confirmation",
-                            "type": "AMAZON.NUMBER",
-                            "confirmationRequired": false,
-                            "elicitationRequired": false,
-                            "prompts": {}
-                        }
-                    ]
-                }
-            ],
-            "delegationStrategy": "ALWAYS"
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
         },
-        "prompts": [
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "NextEvent",
+          "slots": [
             {
-                "id": "Slot.Validation.355048322260.852615150971.452238151598",
-                "variations": [
-                    {
-                        "type": "PlainText",
-                        "value": "I'm not sure I track {event} , could you try again or ask what events are tracked. Thank you."
-                    },
-                    {
-                        "type": "PlainText",
-                        "value": "I don't recognise the name {event} , could you try again or ask what events are tracked. Thank you."
-                    }
-                ]
+              "name": "event",
+              "type": "event"
             },
             {
-                "id": "Elicit.Slot.355048322260.852615150971",
-                "variations": [
-                    {
-                        "type": "PlainText",
-                        "value": "What meetup can I help you with"
-                    },
-                    {
-                        "type": "PlainText",
-                        "value": "Can you please tell me which meetup you'd like details for"
-                    },
-                    {
-                        "type": "PlainText",
-                        "value": "What meetup are you looking for"
-                    }
-                ]
+              "name": "noun",
+              "type": "nounName"
             },
             {
-                "id": "Slot.Validation.570937831864.1419220990581.1454638789259",
-                "variations": [
-                    {
-                        "type": "PlainText",
-                        "value": "I'm not sure I know {event} , please try another or ask me what meetups I can tell you about"
-                    },
-                    {
-                        "type": "PlainText",
-                        "value": "I dont recognise the meetup {event} , could you try again please or ask me about the meetups I know about"
-                    }
-                ]
-            },
-            {
-                "id": "Elicit.Slot.570937831864.1419220990581",
-                "variations": [
-                    {
-                        "type": "PlainText",
-                        "value": "what meetup are you interested in"
-                    },
-                    {
-                        "type": "PlainText",
-                        "value": "what meetup would you like to know about"
-                    }
-                ]
-            },
-            {
-                "id": "Elicit.Slot.719453945544.1386926336022",
-                "variations": [
-                    {
-                        "type": "PlainText",
-                        "value": "how many days before would you like that"
-                    },
-                    {
-                        "type": "PlainText",
-                        "value": "what day would you like the reminder"
-                    }
-                ]
-            },
-            {
-                "id": "Elicit.Slot.719453945544.1277970088921",
-                "variations": [
-                    {
-                        "type": "PlainText",
-                        "value": "for what time do you want the reminder"
-                    },
-                    {
-                        "type": "PlainText",
-                        "value": "what time would you like that to happen"
-                    },
-                  {
-                    "type": "PlainText",
-                    "value": "at what time"
-                  }
-                ]
+              "name": "daterange",
+              "type": "AMAZON.DATE"
             }
+          ],
+          "samples": [
+            "tell me about {event} {noun}",
+            "{event} {noun}",
+            "the {event} {noun}",
+            "about the next {event}",
+            "about the next {event} {noun}",
+            "what meetups are happening {daterange}",
+            "tell me about {event} {daterange}",
+            "what about {event}",
+            "tell me if {event} is on {daterange}",
+            "tell me if {event} is happening {daterange}",
+            "tell me when {event} is on",
+            "information about the next {event}",
+            "what's the next {event}",
+            "tell me about the next {event}",
+            "what {event} {noun} are happening {daterange}",
+            "when's the next {event} {noun}",
+            "when's {event} on {daterange}",
+            "when's the next {noun} for {event}",
+            "when's the next {noun} for {event} {daterange}",
+            "when's {event}",
+            "When's the next {event} "
+          ]
+        },
+        {
+          "name": "WhatEvent",
+          "slots": [
+            {
+              "name": "noun",
+              "type": "nounName"
+            }
+          ],
+          "samples": [
+            "what {noun} can I choose",
+            "what {noun} can I pick from",
+            "{noun}",
+            "show me the {noun}",
+            "list the {noun}",
+            "what {noun} you have",
+            "tell me what {noun} you monitor",
+            "tell me what {noun} you track",
+            "list the {noun} it knows about",
+            "list the {noun} you know about",
+            "what {noun} do you know about",
+            "which {noun} can you tell me about",
+            "what {noun} do you have a calendar for",
+            "which {noun} do you work with",
+            "which {noun} do you track",
+            "what {noun} do you work with"
+          ]
+        },
+        {
+          "name": "EventDetail",
+          "slots": [
+            {
+              "name": "event",
+              "type": "event"
+            }
+          ],
+          "samples": [
+            "describe {event}",
+            "tell me about the {event} group",
+            "give me details about {event}",
+            "about {event}",
+            "ask about {event} ",
+            "information on {event}",
+            "tell me about {event}",
+            "what can you tell me about {event}",
+            "give me details on {event}"
+          ]
+        },
+        {
+          "name": "Reminder",
+          "slots": [
+            {
+              "name": "noun",
+              "type": "nounName"
+            },
+            {
+              "name": "relativeDate",
+              "type": "relativeDate",
+              "samples": [
+                "{relativeDate}"
+              ]
+            },
+            {
+              "name": "timeOfDay",
+              "type": "AMAZON.TIME"
+            },
+            {
+              "name": "confirmation",
+              "type": "AMAZON.NUMBER"
+            }
+          ],
+          "samples": [
+            "when's the next {noun}",
+            "remind me about this {relativeDate}",
+            "remind me {relativeDate}",
+            "remind me",
+            "don't let me forget this",
+            "create a reminder",
+            "remind me about this",
+            "remind me about this {noun}",
+            "set a reminder"
+          ]
+        },
+        {
+          "name": "AllEvent",
+          "slots": [
+            {
+              "name": "daterange",
+              "type": "AMAZON.DATE"
+            },
+            {
+              "name": "noun",
+              "type": "nounName"
+            }
+          ],
+          "samples": [
+            "what {noun} are on {daterange}",
+            "what {noun} are on",
+            "about upcoming {noun} {daterange}",
+            "about upcoming {noun}",
+            "when {noun} are on",
+            "tell me about the {noun}",
+            "{noun} that are on",
+            "{noun} that are happening ",
+            "upcoming {noun}",
+            "tell me about {noun}",
+            "what's happening {daterange}",
+            "what's happening",
+            "tell me about upcoming {noun} {daterange}",
+            "tell me about upcoming {noun}",
+            "what {noun} are happening {daterange}",
+            "what {noun} are coming up"
+          ]
+        }
+      ],
+      "types": [
+        {
+          "name": "event",
+          "values": [
+            {
+              "id": "Notts-Techfast",
+              "name": {
+                "value": "Notts Techfast",
+                "synonyms": [
+                  "nottingham techfast",
+                  "nottingham tech fast",
+                  "notts tech fast",
+                  "tech fast",
+                  "techfast"
+                ]
+              }
+            },
+            {
+              "id": "Nottingham-IoT-Meetup",
+              "name": {
+                "value": "i o t nottingham",
+                "synonyms": [
+                  "Notts IOT",
+                  " not sayote",
+                  "i o t notts",
+                  "i o t knots",
+                  "notts i o t",
+                  "nottingham i o t",
+                  "knots i o t"
+                ]
+              }
+            },
+            {
+              "id": "dotnetnotts",
+              "name": {
+                "value": "dot net nots",
+                "synonyms": [
+                  "dot net knocks",
+                  "dot net nottingham",
+                  "dot net knots"
+                ]
+              }
+            },
+            {
+              "id": "NottsJS",
+              "name": {
+                "value": "nots j s",
+                "synonyms": [
+                  "knot j s",
+                  "not js",
+                  "not j's",
+                  "not chairs",
+                  "nottingham j s",
+                  "knots j s"
+                ]
+              }
+            },
+            {
+              "id": "Women-In-Tech-Nottingham",
+              "name": {
+                "value": "women in tech",
+                "synonyms": [
+                  "woman in tech",
+                  "woman in tech nottingham",
+                  "woman in technology",
+                  "women in technology",
+                  "with knock",
+                  "whitney",
+                  "wait not",
+                  "week not",
+                  "whitlocks",
+                  "wit not",
+                  "wit knot",
+                  "wit knots",
+                  "women in tech nottingham",
+                  "wit notts"
+                ]
+              }
+            },
+            {
+              "id": "PHPMiNDS-in-Nottingham",
+              "name": {
+                "value": "php minds",
+                "synonyms": [
+                  " p h p minds",
+                  "phpminds"
+                ]
+              }
+            },
+            {
+              "id": "tech-nottingham",
+              "name": {
+                "value": "tech nottingham",
+                "synonyms": [
+                  "tech knots",
+                  "tech nott",
+                  "tech notts"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "nounName",
+          "values": [
+            {
+              "name": {
+                "value": "meeting",
+                "synonyms": [
+                  "meetings"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "event",
+                "synonyms": [
+                  "events"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "meetup",
+                "synonyms": [
+                  "meetups"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "relativeDate",
+          "values": [
+            {
+              "id": "sunday",
+              "name": {
+                "value": "the sunday before",
+                "synonyms": [
+                  "that sunday",
+                  "sunday"
+                ]
+              }
+            },
+            {
+              "id": "saturday",
+              "name": {
+                "value": "the saturday before",
+                "synonyms": [
+                  "saturday",
+                  "that saturday"
+                ]
+              }
+            },
+            {
+              "id": "-7",
+              "name": {
+                "value": "a week before",
+                "synonyms": [
+                  "a week",
+                  "the week before"
+                ]
+              }
+            },
+            {
+              "id": "-3",
+              "name": {
+                "value": "3 days before",
+                "synonyms": [
+                  "three days",
+                  "72 hours"
+                ]
+              }
+            },
+            {
+              "id": "-2",
+              "name": {
+                "value": "2 days before",
+                "synonyms": [
+                  "48 hours",
+                  "two days"
+                ]
+              }
+            },
+            {
+              "id": "friday",
+              "name": {
+                "value": "the friday before",
+                "synonyms": [
+                  "friday",
+                  "that friday"
+                ]
+              }
+            },
+            {
+              "id": "thursday",
+              "name": {
+                "value": "the thursday before",
+                "synonyms": [
+                  "that thursday",
+                  "thursday"
+                ]
+              }
+            },
+            {
+              "id": "wednesday",
+              "name": {
+                "value": "the wednesday before",
+                "synonyms": [
+                  "that wednesday",
+                  "wednesday"
+                ]
+              }
+            },
+            {
+              "id": "tuesday",
+              "name": {
+                "value": "the tuesday before",
+                "synonyms": [
+                  "that tuesday",
+                  "tuesday"
+                ]
+              }
+            },
+            {
+              "id": "monday",
+              "name": {
+                "value": "the monday before",
+                "synonyms": [
+                  "monday",
+                  "that monday"
+                ]
+              }
+            },
+            {
+              "id": "-1",
+              "name": {
+                "value": "the day before",
+                "synonyms": [
+                  "24 hours",
+                  "a day before"
+                ]
+              }
+            },
+            {
+              "id": "0",
+              "name": {
+                "value": "same day",
+                "synonyms": [
+                  "zero days",
+                  "that day",
+                  "on the day",
+                  "the same day"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "dialog": {
+      "intents": [
+        {
+          "name": "NextEvent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "event",
+              "type": "event",
+              "confirmationRequired": false,
+              "elicitationRequired": true,
+              "prompts": {
+                "elicitation": "Elicit.Slot.355048322260.852615150971"
+              },
+              "validations": [
+                {
+                  "type": "hasEntityResolutionMatch",
+                  "prompt": "Slot.Validation.355048322260.852615150971.452238151598"
+                }
+              ]
+            },
+            {
+              "name": "noun",
+              "type": "nounName",
+              "confirmationRequired": false,
+              "elicitationRequired": false,
+              "prompts": {}
+            },
+            {
+              "name": "daterange",
+              "type": "AMAZON.DATE",
+              "confirmationRequired": false,
+              "elicitationRequired": false,
+              "prompts": {}
+            }
+          ]
+        },
+        {
+          "name": "EventDetail",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "event",
+              "type": "event",
+              "confirmationRequired": false,
+              "elicitationRequired": true,
+              "prompts": {
+                "elicitation": "Elicit.Slot.570937831864.1419220990581"
+              },
+              "validations": [
+                {
+                  "type": "hasEntityResolutionMatch",
+                  "prompt": "Slot.Validation.570937831864.1419220990581.1454638789259"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Reminder",
+          "delegationStrategy": "SKILL_RESPONSE",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "noun",
+              "type": "nounName",
+              "confirmationRequired": false,
+              "elicitationRequired": false,
+              "prompts": {}
+            },
+            {
+              "name": "relativeDate",
+              "type": "relativeDate",
+              "confirmationRequired": false,
+              "elicitationRequired": true,
+              "prompts": {
+                "elicitation": "Elicit.Slot.719453945544.1386926336022"
+              }
+            },
+            {
+              "name": "timeOfDay",
+              "type": "AMAZON.TIME",
+              "confirmationRequired": false,
+              "elicitationRequired": true,
+              "prompts": {
+                "elicitation": "Elicit.Slot.719453945544.1277970088921"
+              }
+            },
+            {
+              "name": "confirmation",
+              "type": "AMAZON.NUMBER",
+              "confirmationRequired": false,
+              "elicitationRequired": false,
+              "prompts": {}
+            }
+          ]
+        }
+      ],
+      "delegationStrategy": "ALWAYS"
+    },
+    "prompts": [
+      {
+        "id": "Slot.Validation.355048322260.852615150971.452238151598",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "I'm not sure I track {event} , could you try again or ask what events are tracked. Thank you."
+          },
+          {
+            "type": "PlainText",
+            "value": "I don't recognise the name {event} , could you try again or ask what events are tracked. Thank you."
+          }
         ]
-    }
+      },
+      {
+        "id": "Elicit.Slot.355048322260.852615150971",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "What meetup can I help you with"
+          },
+          {
+            "type": "PlainText",
+            "value": "Can you please tell me which meetup you'd like details for"
+          },
+          {
+            "type": "PlainText",
+            "value": "What meetup are you looking for"
+          }
+        ]
+      },
+      {
+        "id": "Slot.Validation.570937831864.1419220990581.1454638789259",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "I'm not sure I know {event} , please try another or ask me what meetups I can tell you about"
+          },
+          {
+            "type": "PlainText",
+            "value": "I dont recognise the meetup {event} , could you try again please or ask me about the meetups I know about"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.570937831864.1419220990581",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "what meetup are you interested in"
+          },
+          {
+            "type": "PlainText",
+            "value": "what meetup would you like to know about"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.719453945544.1386926336022",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "how many days before would you like that"
+          },
+          {
+            "type": "PlainText",
+            "value": "what day would you like the reminder"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.719453945544.1277970088921",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "for what time do you want the reminder"
+          },
+          {
+            "type": "PlainText",
+            "value": "what time would you like that to happen"
+          },
+          {
+            "type": "PlainText",
+            "value": "at what time"
+          }
+        ]
+      }
+    ]
+  }
 }

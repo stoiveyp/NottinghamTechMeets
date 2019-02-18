@@ -2,67 +2,71 @@
   "type": "APL",
   "version": "1.0",
   "theme": "dark",
+  "mainTemplate": {
+    "parameters": [
+      {
+        "name": "payload"
+      }
+    ],
+    "items": [
+      {
+        "type": "Container",
+        "alignItems": "center",
+        "items": [
+          {
+            "type": "Container",
+            "alignItems": "center",
+            "items": [
+              {
+                "type": "Image",
+                "overlayColor": "#00000088",
+                "scale": "best-fit",
+                "source": "${payload.eventData.backgroundUrl}",
+                "height": "100vw",
+                "width": "100vw",
+                "position": "absolute"
+              },
+              {
+                "type": "Text",
+                "text": "${payload.eventData.groupName}",
+                "textAlignVertical": "center",
+                "style": "textStyleDisplay4",
+                "paddingTop": "8vw",
+                "paddingBottom": "2vw"
+              },
+              {
+                "type": "ScrollView",
+                "item": [
+                  {
+                    "type": "Text",
+                    "text": "${payload.eventData.properties.text}",
+                    "id": "groupDescription",
+                    "style": "textStyleBody",
+                    "paddingLeft": "3vw",
+                    "paddingRight": "3vw"
+                  }
+                ],
+                "height": "80vw",
+                "width": "75vw",
+                "paddingTop": "5vw"
+              }
+            ],
+            "height": "100vw",
+            "width": "100vw"
+          }
+        ],
+        "height": "100vw",
+        "width": "100vw"
+      }
+    ]
+  },
   "import": [
     {
       "name": "alexa-styles",
       "version": "1.0.0"
     }
   ],
-  "resources": [],
-  "styles": {},
   "layouts": {},
-  "mainTemplate": {
-    "parameters": [
-      "payload"
-    ],
-    "items": [
-      {
-        "type": "Container",
-        "height": "100vw",
-        "width": "100vw",
-        "alignItems": "center",
-        "items": [
-          {
-            "type": "Container",
-            "width": "100vw",
-            "height": "100vw",
-            "alignItems": "center",
-            "items": [
-              {
-                "type": "Image",
-                "position": "absolute",
-                "source": "${payload.eventData.backgroundUrl}",
-                "scale": "best-fit",
-                "height": "100vw",
-                "width": "100vw",
-                "overlayColor": "#00000088"
-              },
-              {
-                "paddingTop": "2vw",
-                "paddingBottom": "2vw",
-                "type": "Text",
-                "style": "textStyleDisplay4",
-                "text": "${payload.eventData.groupName}",
-                "textAlignVertical": "center"
-              },
-              {
-                "type": "ScrollView",
-                "height": "80vw",
-                "item": [
-                  {
-                    "type": "Text",
-                    "paddingLeft": "3vw",
-                    "paddingRight": "3vw",
-                    "style": "textStyleBody",
-                    "id": "groupDescription",
-                    "text": "${payload.eventData.properties.text}"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  }
+  "resources": [],
+  "styles": {}
 }

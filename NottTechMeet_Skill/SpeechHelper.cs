@@ -69,7 +69,7 @@ namespace NottTechMeet_Skill
                 sentence.Elements.Add(new PlainText($" there's {meetup.Event.Group.Name}. {meetup.Event.Name}"));
                 speech.Elements.Add(new Paragraph(sentence));
             }
-
+            speech.Elements.Add(new Paragraph(new Sentence("Can I help with anything else?")));
             return ResponseBuilder.Ask(speech,null);
         }
 
