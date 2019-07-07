@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Alexa.NET;
 using Alexa.NET.APL;
+using Alexa.NET.APL.Components;
 using Alexa.NET.APL.DataSources;
 using Alexa.NET.Request;
 using Alexa.NET.Response;
@@ -91,7 +92,10 @@ namespace NottTechMeet_Skill
                         {"eventTitle", eventToRecognise.Event.Name}
                     }
                 };
-                var document = await S3Helper.GetDocument(System.Environment.GetEnvironmentVariable("bucket"), "assets/NextEvent.json");
+
+                var filename = request.APLInterfaceDetails().Runtime.MaxVersion == APLDocumentVersion.V1 ? "assets/NextEvent.json" : "assets/NextEvent2.json";
+                var document = await S3Helper.GetDocument(System.Environment.GetEnvironmentVariable("bucket"), filename);
+                document.AddResponsiveDesign();
                 response.Response.Directives.Add(new RenderDocumentDirective
                 {
                     DataSources = new Dictionary<string, APLDataSource> { { "eventData", dataSource } },

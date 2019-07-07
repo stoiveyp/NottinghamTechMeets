@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
@@ -7,14 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Alexa.NET" Version="1.5.7" />
-    <PackageReference Include="Alexa.NET.APL" Version="3.6.2" />
+    <PackageReference Include="Alexa.NET" Version="1.6.3" />
+    <PackageReference Include="Alexa.NET.APL" Version="4.0.1" />
     <PackageReference Include="Alexa.NET.Reminders" Version="1.0.0" />
     <PackageReference Include="Alexa.NET.RequestHandlers" Version="3.1.0" />
-    <PackageReference Include="Amazon.Lambda.Core" Version="1.0.0" />
-    <PackageReference Include="Amazon.Lambda.Serialization.Json" Version="1.4.0" />
-    <PackageReference Include="AWSSDK.S3" Version="3.3.31.14" />
-    <PackageReference Include="Humanizer" Version="2.5.16" />
+    <PackageReference Include="Amazon.Lambda.Core" Version="1.1.0" />
+    <PackageReference Include="Amazon.Lambda.Serialization.Json" Version="1.5.0" />
+    <PackageReference Include="AWSSDK.S3" Version="3.3.103" />
+    <PackageReference Include="Humanizer" Version="2.6.2" />
     <PackageReference Include="NodaTime.AmazonDate" Version="1.0.4" />
   </ItemGroup>
 
@@ -36,7 +36,7 @@
     <None Update="EventDetail.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="NextEvent.json">
+    <None Update="NextEvent2.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

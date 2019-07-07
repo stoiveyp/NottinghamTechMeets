@@ -75,7 +75,7 @@ namespace NottTechMeet_IO
             var s3 = new AmazonS3Client();
             var request = new GetObjectRequest
             {
-                BucketName = System.Environment.GetEnvironmentVariable("bucket"),
+                BucketName = System.Environment.GetEnvironmentVariable("bucket") ?? "notttechmeet",
                 Key = EnvSafeEventName
             };
             try
@@ -83,7 +83,8 @@ namespace NottTechMeet_IO
                 var response = await s3.GetObjectAsync(request);
                 using (var reader = new JsonTextReader(new StreamReader(response.ResponseStream)))
                 {
-                    return Serializer.Deserialize<List<Event>>(reader);
+                    var events = Serializer.Deserialize<List<Event>>(reader);
+                    return events;
                 }
             }
             catch (AmazonS3Exception)

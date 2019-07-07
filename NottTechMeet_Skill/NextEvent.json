@@ -2,10 +2,12 @@
   "type": "APL",
   "version": "1.0",
   "theme": "dark",
-  "import": [{
-    "name": "alexa-styles",
-    "version" : "1.0.0"
-  }],
+  "import": [
+    {
+      "name": "alexa-styles",
+      "version": "1.0.0"
+    }
+  ],
   "resources": [],
   "styles": {},
   "layouts": {},
@@ -13,9 +15,10 @@
     "parameters": [ "payload" ],
     "items": [
       {
-        "type": "Container",
+        "type": "AlexaHeadline",
         "height": "100vw",
         "width": "100vw",
+        "backgroundBlur": true, 
         "alignItems": "center",
         "items": [
           {

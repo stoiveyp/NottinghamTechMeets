@@ -1,0 +1,29 @@
+﻿{
+  "type": "APL",
+  "version": "1.1",
+  "theme": "dark",
+  "import": [
+    {
+      "name": "alexa-layouts",
+      "version": "1.1.0"
+    }
+  ],
+  "resources": [],
+  "styles": {},
+  "layouts": {},
+  "mainTemplate": {
+    "parameters": [ "payload" ],
+    "items": [
+      {
+        "type": "AlexaHeadline",
+        "height": "100vw",
+        "width": "100vw",
+        "backgroundBlur": true,
+        "backgroundImageSource": "${payload.eventData.backgroundUrl}",
+        "headerTitle": "${payload.eventData.eventTitle}",
+        "headerDivider": true, 
+        "headerSubtitle": "${payload.eventData.groupName}  |  ${payload.eventData.eventDate}"
+      }
+    ]
+  }
+}
