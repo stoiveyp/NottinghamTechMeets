@@ -20,9 +20,10 @@
         "width": "100vw",
         "backgroundBlur": true,
         "backgroundImageSource": "${payload.eventData.backgroundUrl}",
-        "headerTitle": "${payload.eventData.eventTitle}",
-        "headerDivider": true, 
-        "headerSubtitle": "${payload.eventData.groupName}  |  ${payload.eventData.eventDate}"
+        "headerTitle": "${payload.eventData.groupName}",
+        "headerDivider": true,
+        "primaryText": "${payload.eventData.eventTitle}",
+        "secondaryText": "${payload.eventData.eventDate}"
       }
     ]
   }
