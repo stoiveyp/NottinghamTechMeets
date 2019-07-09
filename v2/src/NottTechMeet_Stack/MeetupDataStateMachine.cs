@@ -1,8 +1,14 @@
+using Amazon.CDK;
+using Amazon.CDK.AWS.StepFunctions;
+
 namespace HelloCdk
 {
-    public class MeetupDataStateMachine
+    public class MeetupDataStateMachine:StateMachine
     {
-        public MeetupDataStateMachine(StepFunctionLambdaList lambdas)
+        public MeetupDataStateMachine(Construct scope,StepFunctionLambdaList list):base(scope,"notttechcronprocess",new StateMachineProps
+        {
+            StateMachineName = "notttechcronprocess"
+        })
         {
             
         }

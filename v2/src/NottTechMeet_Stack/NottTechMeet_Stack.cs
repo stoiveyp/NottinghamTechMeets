@@ -29,7 +29,9 @@ namespace HelloCdk
             });
 
             var lambdas = new StepFunctionLambdaList(this);
-            var statemachine = new MeetupDataStateMachine(lambdas);
+            lambdas.SetSSMParameter(ssm);
+
+            //new MeetupDataStateMachine(this,lambdas);
         }
     }
 }
