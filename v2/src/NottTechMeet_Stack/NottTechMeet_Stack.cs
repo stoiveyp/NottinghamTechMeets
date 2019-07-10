@@ -2,6 +2,7 @@ using Amazon.CDK;
 using Amazon.CDK.AWS.IAM;
 using Amazon.CDK.AWS.S3;
 using Amazon.CDK.AWS.SSM;
+using Amazon.CDK.AWS.StepFunctions;
 
 namespace HelloCdk
 {
@@ -31,7 +32,10 @@ namespace HelloCdk
             var lambdas = new StepFunctionLambdaList(this);
             lambdas.SetSSMParameter(ssm);
 
-            //new MeetupDataStateMachine(this,lambdas);
+            new StateMachine(this, "meetupdataworkflow", new StateMachineProps
+            {
+                Definition = MeetupDataStateMachine.GetDefinition(this,lambdas),
+            });
         }
     }
 }

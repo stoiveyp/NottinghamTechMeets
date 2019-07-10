@@ -12,6 +12,7 @@
     <PackageReference Include="Amazon.CDK.AWS.Lambda" Version="0.36.1" />
     <PackageReference Include="Amazon.CDK.AWS.S3" Version="0.36.1" />
     <PackageReference Include="Amazon.CDK.AWS.StepFunctions" Version="0.36.1" />
+    <PackageReference Include="Amazon.CDK.AWS.StepFunctions.Tasks" Version="0.36.1" />
   </ItemGroup>
 
 </Project>

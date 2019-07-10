@@ -10,6 +10,9 @@ namespace HelloCdk
     {
         public Function GetTalk { get; }
         public Function GetEvents { get; }
+
+        public Function GetData { get; }
+
         public StepFunctionLambdaList(Construct scope)
         {
             GetTalk = new Function(scope, "notttechgettalk", new FunctionProps
@@ -25,6 +28,14 @@ namespace HelloCdk
                 Code = Code.Asset("./lambdaoutput/getevents.zip"),
                 Runtime = Runtime.DOTNET_CORE_2_1,
                 Handler = "NottTechMeet_PullMeetupEvents::NottTechMeet_PullMeetupEvents.Function::FunctionHandler",
+                Timeout = Duration.Seconds(30)
+            });
+
+            GetData = new Function(scope, "notttechgetdata", new FunctionProps
+            {
+                Code = Code.Asset("./lambdaoutput/getdata.zip"),
+                Runtime = Runtime.DOTNET_CORE_2_1,
+                Handler = "NottTechMeet_PullMeetupData::NottTechMeet_PullMeetupData.Function::FunctionHandler",
                 Timeout = Duration.Seconds(30)
             });
         }
